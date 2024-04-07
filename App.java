@@ -15,7 +15,31 @@ public class App{
 		}
 		readFile();
 
+		System.out.print(
+			"Choose user:\n"
+		+	"1. Customer\n"
+		+	"2. Employee\n"
+		);
+		int chosen = sc.nextInt();
 
+		switch(chosen){
+		case 1:
+			Customer customer = new Customer();
+			while(customer.chooseAction());
+			break;
+		case 2:
+			String username = sc.next();
+			for(Employee employee : employees) if(employee.account.username == username){
+				if(employee.account.verify()){
+
+				}
+				else{
+
+				}
+				break;
+			}
+			break;
+		}
 
 
 

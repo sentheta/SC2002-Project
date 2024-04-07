@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-public class Employee implements Person{
+public abstract class Employee implements Person{
 	public enum RoleType{STAFF, MANAGER, ADMIN};
 	public enum GenderType{MALE, FEMALE};
 
@@ -14,4 +14,10 @@ public class Employee implements Person{
 	Employee(){
 
 	}
+
+	String getName(){return name;}
+	void setName(String s){name = s;}
+	RoleType getRole(){return role;}
+	void setRole(RoleType tmp){role = tmp;}
+
 }

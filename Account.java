@@ -3,17 +3,26 @@ import java.util.*;
 
 public class Account{
 	public String username;
-	private String password;
+	private int hash;
 
 	Account(String username){
 		this.username = username;
-		password = "password";
+		hash = computeHash("password");
 	}
 
-	public boolean verify(){
+	private int computeHash(String s){
+		long ret = 0, base = 2024, mul = 1, mod = 1000000007;
+		for(int i=0; i<s.length(); i++){
+			ret = (ret + s.charAt(i)*mul)%mod;
+			mul = mul*base%mod;
+		}
+		return (int)ret;
+	}
+
+	public Boolean verify(){
 		Scanner sc = new Scanner(System.in);
 		System.out.print("Enter password: ");
-		return password == sc.next;
+		return hash	== computeHash(sc.next());
 	}
 	public void changePassword(){
 		Scanner sc = new Scanner(System.in);
@@ -22,8 +31,11 @@ public class Account{
 		}
 		else{
 			System.out.print("Enter new password: ");
-			password = sc.next();	
+			hash = computeHash(sc.next());
 			System.out.print("Password updated.");
 		}
 	}
+
+	public String getUsername(){return username;}
+	public void setUsername(String s){username = s;}
 }
