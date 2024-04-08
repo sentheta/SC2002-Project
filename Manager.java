@@ -37,9 +37,9 @@ public class Manager extends Staff implements Person{
 		choice = sc.nextInt();
 		int i;
 		Branch branch;
-		for (i=0; i<App.branch.size(); i++) {
-			if (getBranch() == App.branch[i].getName()) {
-				branch = App.branch[i];
+		for (i=0; i<App.branches.size(); i++) {
+			if (getBranch() == App.branches[i].getName()) {
+				branch = App.branches[i];
 			}
 		if (choice < 1 || choice > 2) {
 			return false;
