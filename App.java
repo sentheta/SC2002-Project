@@ -53,7 +53,13 @@ public class App{
 			payMethods = (ArrayList<PayMethod>) in.readObject();
 			in.close();
 		}catch(Exception e){
-			e.printStackTrace();
+			// Make 1 user, that is admin only
+			employees = new ArrayList<Employee>();
+			branches = new ArrayList<Branch>();
+			payMethods = new ArrayList<PayMethod>();
+
+			employees.add(new Admin());
+			//e.printStackTrace();
 		}
 	}
 
@@ -71,8 +77,5 @@ public class App{
 	}
 
 	//================================================================//
-	
-
-
 
 }

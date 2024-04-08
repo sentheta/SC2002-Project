@@ -10,7 +10,7 @@ public abstract class Employee implements Person{
 	public GenderType gender;
 	public int age;
 	public Account acc;
-	
+		
 	String getName(){return name;}
 	void setName(String tmp){name = tmp;}
 	RoleType getRole(){return role;}
