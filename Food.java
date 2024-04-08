@@ -14,30 +14,14 @@ public class Food{
         this.price = price;
         this.category = category;
     }
-
+    
  
-    public String getName() {
-        return name;
-    }
-    public void setName(String name) {
-        this.name = name;
-    }
-    public boolean getAvailable() {
-        return availability;
-    }
-    public void setAvailable(boolean availability) {
-        this.availability = availability;
-    }
-    public double getPrice() {
-        return price;
-    }
-    public void setPrice(double price) {
-        this.price = price;
-    }
-    public String getCategory() {
-    	return category;
-    }
-    public void setCategory(String category){
-    	this.category = category;
-    }
+    public String getName() {return name;}
+    public void setName(String name) {this.name = name;}
+    public boolean getAvailable() {return availability;}
+    public void setAvailable(boolean availability) {this.availability = availability;}
+    public double getPrice() {return price;}
+    public void setPrice(double price) {this.price = price;}
+    public String getCategory() {return category;}
+    public void setCategory(String category) {this.category = category;}
 }
