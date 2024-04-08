@@ -25,8 +25,6 @@ public class PayMethod {
 
         System.out.print("Enter your choice: ");
         int choice = scanner.nextInt();
-        scanner.nextLine();
-
         PayMethod paymentMethod = null;
 
         switch (choice) {
