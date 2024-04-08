@@ -38,9 +38,9 @@ public class Staff extends Employee implements Person{
 		System.out.println("1. Display Order, 2. View Order");
 		int i;
 		Branch branch;
-		for (i=0; i<App.branch.size(); i++) {
-			if (getBranch() == App.branch.get(i).getName()) {
-				branch = App.branch.get(i);
+		for (i=0; i<App.branches.size(); i++) {
+			if (getBranch() == App.branches.get(i).getName()) {
+				branch = App.branches.get(i);
 			}
 		}
 		choice = scanner.nextInt();
