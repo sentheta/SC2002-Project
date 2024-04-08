@@ -1,5 +1,5 @@
 import java.util.Scanner;
-public class Manager extends Staff implements ManagerDoable, Person{
+public class Manager extends Staff implements Person{
 	Scanner sc = new Scanner(System.in);
 	public Manager(String role, String gender, String name, int age, Account account, String branch) {
 		super(role, gender, name, age, account, branch);
@@ -31,25 +31,26 @@ public class Manager extends Staff implements ManagerDoable, Person{
 		}while(choice >= 1 && choice <= 4);
 	}
 	
-	public void chooseAction() {
+	public boolean chooseAction() {
 		int choice;
+		System.out.println("Key in 1 to display staff, 2 to modify menu");
 		choice = sc.nextInt();
-		do {
-			int i;
-			Branch branch;
-			for (i=0; i<App.branch.length(); i++) {
-				if (getBranch() == App.branch[i].getName()) {
-					branch = App.branch[i];
-				}
-			if (choice < 1 || choice > 2) {
-				break;
+		int i;
+		Branch branch;
+		for (i=0; i<App.branch.size(); i++) {
+			if (getBranch() == App.branch[i].getName()) {
+				branch = App.branch[i];
 			}
-			else if (choice == 1) {
-				displayStaff(branch);
-			}
-			else {
-				modifyMenu(branch);
-			}
-		}while (choice==1 || choice==2);
+		if (choice < 1 || choice > 2) {
+			return false;
+		}
+		else if (choice == 1) {
+			displayStaff(branch);
+			return true;
+		}
+		else {
+			modifyMenu(branch);
+			return true;
+		}
 	}
 }
