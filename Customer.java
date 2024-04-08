@@ -17,7 +17,7 @@ public class Customer implements Person {
         Scanner scanner = new Scanner(System.in);
 
         menu.displayFoodItems();
-
+        // generate order id in order class?
         Order order = new Order();
         while (true) {
             System.out.print("Item number (or an alphabet to finish order): ");
