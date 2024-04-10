@@ -78,4 +78,11 @@ public class App{
 
 	//================================================================//
 
+	public static ArrayList<Employee> getEmployees(){return employees;}
+	// public static void setEmployees(ArrayList<Employee> tmp){employees = tmp;}
+	public static ArrayList<Branch> getBranches(){return branches;}
+	// public static void setBranches(ArrayList<Branch> tmp){branches = tmp;}
+	public static ArrayList<PayMethod> getPayMethods(){return payMethods;}
+	// public static void setPayMethods(ArrayList<PayMethod> tmp){payMethods = tmp;}
+
 }

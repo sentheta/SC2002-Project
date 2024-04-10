@@ -10,15 +10,15 @@ public abstract class Employee implements Person{
 	public GenderType gender;
 	public int age;
 	public Account acc;
-		
-	String getName(){return name;}
-	void setName(String tmp){name = tmp;}
-	RoleType getRole(){return role;}
-	void setRole(RoleType tmp){role = tmp;}
-	GenderType getGender(){return gender;}
-	void setGender(GenderType tmp){gender = tmp;}
-	int getAge(){return age;}
-	void setAge(int tmp){age = tmp;}
-	Account getAcc(){return acc;}
-	void setAcc(Account tmp){acc = tmp;}
+	
+	public String getName(){return name;}
+	public void setName(String tmp){name = tmp;}
+	public RoleType getRole(){return role;}
+	public void setRole(RoleType tmp){role = tmp;}
+	public GenderType getGender(){return gender;}
+	public void setGender(GenderType tmp){gender = tmp;}
+	public int getAge(){return age;}
+	public void setAge(int tmp){age = tmp;}
+	public Account getAcc(){return acc;}
+	public void setAcc(Account tmp){acc = tmp;}
 }
