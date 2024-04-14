@@ -39,7 +39,7 @@ public class Staff extends Employee implements Person{
 		int i;
 		Branch branch;
 		for (i=0; i<App.branches.size(); i++) {
-			if (getBranch() == App.branches.get(i).getName()) {
+			if (getBranch().equals(App.branches.get(i).getName())) {
 				branch = App.branches.get(i);
 			}
 		}
