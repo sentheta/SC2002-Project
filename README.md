@@ -2,8 +2,9 @@
 
 Consideration:
 
-  Should we make Employee an interface instead of class?
- 
+  Should we make Employee an interface instead of class? NO LOL, need the constructor
+
+  Should we split App to App and DataLoader?
 
 
 Fix to do:
@@ -11,3 +12,5 @@ Fix to do:
 Admin.java: chooseAction() is empty
 
 Add display() to Order.java so that Menu.java can use it
+
+
