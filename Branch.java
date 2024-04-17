@@ -1,14 +1,16 @@
-import java.io.*;
 import java.util.*;
 
 public class Branch{
-	public class Branch implements Serializable{
+	
 	private Menu menu;
 	private String name;
-	private ArrayList<Manager> managers;
 	private ArrayList<Staff> staffs;
+	private ArrayList<Manager> managers;
 	private ArrayList<Order> orders;
 	private int quota;
+
+    //================================================================//
+
 	public Branch(Menu menu, String name, ArrayList<Staff> staffs, ArrayList<Manager> managers, ArrayList<Order> orders) {
 		this.menu = menu;
 		this.name = name; 
@@ -25,39 +27,6 @@ public class Branch{
 			quota = 3;
 		}
 	}
-	public ArrayList<Order> getOrders() {
-		return orders;
-	}
-	public Menu getMenu() {
-		return menu;
-	}
-	public String getName() {
-		return name;
-	}
-	public ArrayList<Manager> getManagers() {
-		return managers;
-	}
-	public ArrayList<Staff> getStaff() {
-		return staffs;
-	}
-	public int getQuota(){
-		return quota;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public void setMenu(Menu menu) {
-		this.menu = menu;
-	}
-	public void setOrders(ArrayList<Order> orders) {
-		this.orders = orders;
-	}
-	public void setManagers(ArrayList<Manager> managers) {
-		this.managers = managers;
-	}
-	public void setStaffs(ArrayList<Staff> staffs) {
-		this.staffs = staffs;
-	}
 	public void setQuota() {
 		if (staffs.size() <= 4) {
 			quota = 1;
@@ -68,7 +37,6 @@ public class Branch{
 		else {
 			quota = 3;
 		}
-		
 	}
 	
 	public void addStaff(Staff staff) {
@@ -118,6 +86,26 @@ public class Branch{
 			System.out.println(i+1 + ": " + managers.get(i).getName());
 		}
 	}
-}
+
+    //================================================================//
+
+
+	public ArrayList<Order> getOrders() {return orders;}
+	public void setOrders(ArrayList<Order> orders) {this.orders = orders;}
+
+	public Menu getMenu() {return menu;}
+	public void setMenu(Menu menu) {this.menu = menu;}
+
+	public String getName() {return name;}
+	public void setName(String name) {this.name = name;}
+
+	public ArrayList<Manager> getManagers() {return managers;}
+	public void setManagers(ArrayList<Manager> managers) {this.managers = managers;}
+
+	public ArrayList<Staff> getStaff() {return staffs;}
+	public void setStaffs(ArrayList<Staff> staffs) {this.staffs = staffs;}
+
+	public int getQuota() {return quota;}
 
 }
+

@@ -1,9 +1,15 @@
-import java.util.Scanner;
+import java.util.*;
+
 public class Manager extends Staff implements Person{
 	Scanner sc = new Scanner(System.in);
-	public Manager(String role, String gender, String name, int age, Account account, String branch) {
-		super(role, gender, name, age, account, branch);
+
+    //================================================================//
+
+
+	Manager(String name,RoleType role,GenderType gender,int age,Account acc,Branch branch){
+		super(name,role,gender,age,acc,branch);
 	}
+
 	public void displayStaff(Branch branch) {
 		branch.displayStaff();
 	}
@@ -17,7 +23,7 @@ public class Manager extends Staff implements Person{
 			branch.getMenu().addFood();
 			break;
 		case 2:
-			branch.getMenu().delFood();
+			branch.getMenu().deleteFood();
 			break;
 		case 3:
 			branch.getMenu().updatePrice();
@@ -33,15 +39,11 @@ public class Manager extends Staff implements Person{
 	
 	public boolean chooseAction() {
 		int choice;
-		System.out.println("Key in 1 to display staff, 2 to modify menu");
+		System.out.println("Key in 1 to display staff, 2 to modify menu, other value to end session");
 		choice = sc.nextInt();
 		int i;
-		Branch branch;
-		for (i=0; i<App.branches.size(); i++) {
-			if (getBranch().equals(App.branches[i].getName())) {
-				branch = App.branches[i];
-			}
-		if (choice < 1 || choice > 2) {
+
+		if(choice<1 || choice>2){
 			return false;
 		}
 		else if (choice == 1) {
@@ -53,4 +55,7 @@ public class Manager extends Staff implements Person{
 			return true;
 		}
 	}
+
+    //================================================================//
+
 }

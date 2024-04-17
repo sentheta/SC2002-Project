@@ -1,10 +1,14 @@
-import java.io.*;
 import java.util.*;
 
 public class Account{
-	public String username;
-	private int hash;
+	private String username;
+	private int hash; // ?? change to SHA or something
 
+    //================================================================//
+
+	Account(){
+		this("Admin");
+	}
 	Account(String username){
 		this.username = username;
 		hash = computeHash("password");
@@ -40,6 +44,8 @@ public class Account{
 			System.out.print("Password updated.");
 		}
 	}
+
+    //================================================================//
 
 	public String getUsername(){return username;}
 	public void setUsername(String s){username = s;}

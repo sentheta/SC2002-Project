@@ -1,55 +1,64 @@
-package sc2002.yt.first;
-
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 import java.util.stream.Collectors;
 
 
 public class Admin extends Employee {
-	public static ArrayList<Employee> employees;
-	public static ArrayList<Branch> branches;	
-	public static ArrayList<PayMethod> payMethods;
+	public ArrayList<Employee> employees;
+	public ArrayList<Branch> branches;	
+	public ArrayList<PayMethod> payMethods;
 	
-	payMethods = {"Paywave", "Credit card", "NETS"};
+    //================================================================//
+
+	Admin(){
+		super("admin", Employee.RoleType.ADMIN, Employee.GenderType.MALE, 0, new Account());
+	}
+	// Admin(String name,RoleType role,GenderType gender,int age,Account acc){
+	// 	super(name,role,gender,age,acc);
+	// }
+
+	public boolean chooseAction(){
+		// ??
+		return false;
+	}
 	
-	
+	/*
     public void addStaff(Staff staff) {
     	
     	int choice;
 		Scanner sc = new Scanner(System.in);
-		do {
-			System.out.println("Choose 1 to add a manager and 2 to add a staff ");
-			choice = sc.nextInt();
+		// I will check this later, too much error message on this part
+		// do {
+		// 	System.out.println("Choose 1 to add a manager and 2 to add a staff ");
+		// 	choice = sc.nextInt();
 		
-			switch (choice) {
-				case 1: 
-					System.out.println("Add the new manager's role, gender, name, age, account and branch ");
-					Scanner scanner = new Scanner(System.in);
-					super(role, gender, name, age, account, branch); 
+		// 	switch (choice) {
+		// 		case 1: 
+		// 			System.out.println("Add the new manager's role, gender, name, age, account and branch ");
+		// 			Scanner scanner = new Scanner(System.in);
+		// 			Manager manager = Manager(role, gender, name, age, account, branch);
 					
-					boolean managerexists = Stafflist.contains(this.Manager);
-					if (managerexists == true) {
-						System.out.println("Manager exists.");
-					} else {
-						managers.add((Manager) staff);	
-					}
+		// 			boolean managerexists = Stafflist.contains(manager);
+		// 			if (managerexists == true) {
+		// 				System.out.println("Manager exists.");
+		// 			} else {
+		// 				managers.add(manager);	
+		// 			}
 					
-					break;
-			    case 2: 
-					System.out.println("Add the new staff's role, gender, name, age, account and branch ");
-					Scanner scanner = new Scanner(System.in);
-					super(role, gender, name, age, account, branch);
-					boolean staffexists = Stafflist.contains(this.Staff);
-					if (staffexists == true) {
-						System.out.println("Staff exists.");
-					} else {
-						staffs.add(staff);
+		// 			break;
+		// 	    case 2: 
+		// 			System.out.println("Add the new staff's role, gender, name, age, account and branch ");
+		// 			Scanner scanner = new Scanner(System.in);
+		// 			super(role, gender, name, age, account, branch);
+
+		// 			boolean staffexists = Stafflist.contains(this.Staff);
+		// 			if (staffexists == true) {
+		// 				System.out.println("Staff exists.");
+		// 			} else {
+		// 				staffs.add(staff);
 						
-					}
-					break; 	}
-		}while (choice < 3);
+		// 			}
+		// 			break; 	}
+		// }while (choice < 3);
 	}
 	
 	
@@ -87,7 +96,8 @@ public class Admin extends Employee {
 		for (i=0; i<managers.size(); i++) {
 			System.out.println(i+1 + ": " + managers.get(i).getName());
 		}
-}
+	}
+
     public void assignManager(String branch, String name) {
     	Branch targetBranch = null;
         for (Branch branch : branchList) {
@@ -241,5 +251,11 @@ public class Admin extends Employee {
     		System.out.println("Branch does not exist. ");
     	}
 	}
+	*/
+
+    //================================================================//
+
+
+
 }
   

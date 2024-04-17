@@ -1,16 +1,14 @@
-import java.util.Scanner;
+import java.util.*;
 
 public class PayMethod {
     private String name;
-   
+
+    //================================================================//
+
     public PayMethod(String name) {
         this.name = name;
     }
 
-    public String getName() {
-        return name;
-    }
-    
     public static void pay(double amount) {
         System.out.println("Payment of $" + amount + " made using " + "name");
     }
@@ -44,5 +42,9 @@ public class PayMethod {
         scanner.close();
         return paymentMethod;
     }
+
+    //================================================================//
+
+    public String getName() {return name;}
 
 }

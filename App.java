@@ -5,20 +5,16 @@ public class App{
 	public static ArrayList<Employee> employees;
 	public static ArrayList<Branch> branches;
 	public static ArrayList<PayMethod> payMethods;
+
 	
-	private static String filename = "data";
+	private static final String filename = "data";
 
 	//================================================================//
 
 	public static void main(String[] args){
-		if(args.length > 1) filename = args[0];
 		readFile();
 
-		System.out.print(
-			"Choose user:\n"
-		+	"1. Customer\n"
-		+	"2. Employee\n"
-		);
+		System.out.println("Choose user:    1.Customer    2.Employee");
 		Scanner sc = new Scanner(System.in);
 		int chosen = sc.nextInt();
 
@@ -37,14 +33,13 @@ public class App{
 		}
 
 		writeFile();
-		System.out.print(
-			"Terminating program..."
-		);
+		System.out.print("Terminating program...");
 	}
 
 	//================================================================//
 
 	private static void readFile(){
+		// read file
 		try{
 			FileInputStream fin = new FileInputStream(filename);
 			ObjectInputStream in = new ObjectInputStream(fin);
@@ -53,7 +48,7 @@ public class App{
 			payMethods = (ArrayList<PayMethod>) in.readObject();
 			in.close();
 		}catch(Exception e){
-			// Make 1 user, that is admin only
+			// if file load fail, the scenario only contains 1 admin and nothing else
 			employees = new ArrayList<Employee>();
 			branches = new ArrayList<Branch>();
 			payMethods = new ArrayList<PayMethod>();

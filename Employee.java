@@ -1,4 +1,3 @@
-import java.io.*;
 import java.util.*;
 
 public abstract class Employee implements Person{
@@ -10,6 +9,18 @@ public abstract class Employee implements Person{
 	public GenderType gender;
 	public int age;
 	public Account acc;
+
+    //================================================================//
+
+	Employee(String name,RoleType role,GenderType gender,int age,Account acc){
+		this.name = name;
+		this.role = role;
+		this.gender = gender;
+		this.age = age;
+		this.acc = acc;
+	}
+
+    //================================================================//
 	
 	public String getName(){return name;}
 	public void setName(String tmp){name = tmp;}

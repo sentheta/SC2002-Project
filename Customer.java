@@ -1,25 +1,30 @@
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.*;
 
 
-public class Customer implements Person {
-    private ArrayList<Order> orders;
+public class Customer implements Person{
     private Branch branch; 
+    private ArrayList<Order> orders;
     private Menu menu;
 
-    public Customer(Branch branch) {
+    //================================================================//
+
+    Customer(){
+        // ??
+    }
+    Customer(Branch branch) {
         this.branch = branch;
-        this.orders = new ArrayList<>();
+        this.orders = branch.getOrders();
         this.menu = branch.getMenu(); //def getMenu() in branch?
-        }
+    }
 
     public void makeOrder() {
         Scanner scanner = new Scanner(System.in);
 
-        menu.displayFoodItems();
-        // generate order id in order class?
-        Order order = new Order();
-        while (true) {
+        menu.display();
+        Order order = new Order(); // ??
+        int itemNumber=0, quantity=0;
+        // make while loop to force user enter a valid itemNumber and qty
+        while (true){
             System.out.print("Item number (or an alphabet to finish order): ");
             String input = scanner.nextLine();
             
@@ -27,11 +32,11 @@ public class Customer implements Person {
                 break;
 
             System.out.print("Quantity: ");
-            int quantity = scanner.nextInt();
+            quantity = scanner.nextInt();
 
             try {
-                int itemNumber = Integer.parseInt(input);
-                if (itemNumber < 1 || itemNumber > menu.getFoodItems().length) {  //getFoodItems() def in Menu? each num correspond to item 
+                itemNumber = Integer.parseInt(input);
+                if(itemNumber<1 || itemNumber>=menu.getFoods().size()) {  //getFoodItems() def in Menu? each num correspond to item 
                     System.out.println("Item not on the menu"); 
                 }
             } catch (NumberFormatException e) {
@@ -39,10 +44,10 @@ public class Customer implements Person {
                 scanner.nextLine(); 
             }
         }
-        Food selectedFood = menu.getFoodItems(itemNumber - 1); //assume the choice start from 1 
+        Food selectedFood = menu.getFoods().get(itemNumber-1); //assume the choice start from 1 
+        order.addItem(selectedFood, quantity);
+
         orders.add(order);
-        orders.addItem(selectedFood, quantity);
-        scanner.close();
     }
 
     public void checkOrder(int orderId) {
@@ -70,22 +75,14 @@ public class Customer implements Person {
 
     public void takeOrder(int orderId) {
         for (Order order : orders) {
-            if (order.getId() == orderId && order.getStatus() == OrderStatus.readyToPickUp) {
-                order.setStatus(OrderStatus.completed); //use same name in enum in order class
+            if (order.getId() == orderId && order.getStatus() == Order.OrderStatus.READY) {
+                order.setStatus(Order.OrderStatus.COMPLETED); //use same name in enum in order class
                 //need add setStatus() in order class maybe?
                 System.out.println("Order ID " + orderId + " collected");
                 return;
             }
         }
         System.out.println("Order with ID " + orderId + " not found or not ready for pickup");
-    }
-
-    public ArrayList<Order> getOrders() {
-        return orders;
-    }
-
-    public Branch getBranch() {
-        return branch;
     }
     
     public boolean chooseAction() {
@@ -100,7 +97,7 @@ public class Customer implements Person {
         System.out.print("Enter your choice: ");
         int choice = scanner.nextInt();
 
-        switch (choice) {
+        switch(choice) {
             case 1:
                 makeOrder();
                 break;
@@ -124,8 +121,12 @@ public class Customer implements Person {
             default:
             	System.out.println("Invalid");
         }
-
-        scanner.close();
+        return false;
     }
+
+    //================================================================//
+
+    public ArrayList<Order> getOrders() {return orders;}
+    public Branch getBranch() {return branch;}
 
 }
