@@ -6,6 +6,7 @@ Consideration:
 
   Should we split App to App and DataLoader?
 
+  Should we rename "Person" interface to "User" interface?
 
 Fix to do:
 
