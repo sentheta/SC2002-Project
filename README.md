@@ -12,8 +12,13 @@ Consideration:
 
 Fix to do:
 
-Admin.java: chooseAction() is empty
+Admin.java: ...
 
-Add display() to Order.java so that Menu.java can use it
+Branch.java: make displayOrder() so Staff.java can use it
+Order.java: make display() so that Branch.java can use it
+
+Menu.java: addFood(), deleteFood(), updatePrice(), updateAvail() needs implementation. Take input from user
+
+
 
 
