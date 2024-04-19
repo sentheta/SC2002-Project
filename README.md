@@ -18,6 +18,6 @@ Admin.java: ...
 
 Menu.java: addFood(), deleteFood(), updatePrice(), updateAvail() needs implementation. Take input from user
 
-
+After everything are done, we will modify private/public/protected/package accordingly
 
 
