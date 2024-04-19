@@ -12,6 +12,8 @@ Consideration:
 
 Fix to do:
 
+Add try{}catch(Exception e){} everywhere :/
+
 Admin.java: ...
 
 Menu.java: addFood(), deleteFood(), updatePrice(), updateAvail() needs implementation. Take input from user
