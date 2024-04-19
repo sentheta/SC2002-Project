@@ -2,63 +2,91 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 
-public class Admin extends Employee {
+public class Admin extends Employee{
 	public ArrayList<Employee> employees;
 	public ArrayList<Branch> branches;	
 	public ArrayList<PayMethod> payMethods;
 	
     //================================================================//
+    //================================================================//
+    
 
 	Admin(){
-		super("admin", Employee.RoleType.ADMIN, Employee.GenderType.MALE, 0, new Account());
+		super("admin", Employee.RoleType.ADMIN, Employee.GenderType.MALE, 0, new Account("admin"));
 	}
-	// Admin(String name,RoleType role,GenderType gender,int age,Account acc){
-	// 	super(name,role,gender,age,acc);
-	// }
 
 	public boolean chooseAction(){
-		// ??
+		Scanner sc = new Scanner(System.in);
+
+		System.out.println("Choose admin action:");
+		System.out.println("1. Add staff");
+		System.out.println("2. Remove staff");
+		System.out.println("3. Display staff list");
+		System.out.println("4. Promote staff to manager");
+		System.out.println("5. Transfer staff to other branch");
+		System.out.println("6. Add payment method");
+		System.out.println("7. Remove payment method");
+		System.out.println("8. Open branch");
+		System.out.println("9. Close branch");
+
+		int choice = sc.nextInt();
+		switch(choice){
+		// case 1: addStaff(); return true;
+		// case 2: removeStaff(); return true;
+		// case 3: displayStaff(); return true;
+		// case 4: promoteStaff(); return true;
+		// case 5: transferStaff(); return true;
+		// case 6: addPayMethod(); return true;
+		// case 7: removePayMethod(); return true;
+		// case 8: openBranch(); return true;
+		// case 9: closeBranch(); return true;
+		}
 		return false;
 	}
-	
-	/*
-    public void addStaff(Staff staff) {
-    	
-    	int choice;
-		Scanner sc = new Scanner(System.in);
-		// I will check this later, too much error message on this part
-		// do {
-		// 	System.out.println("Choose 1 to add a manager and 2 to add a staff ");
-		// 	choice = sc.nextInt();
-		
-		// 	switch (choice) {
-		// 		case 1: 
-		// 			System.out.println("Add the new manager's role, gender, name, age, account and branch ");
-		// 			Scanner scanner = new Scanner(System.in);
-		// 			Manager manager = Manager(role, gender, name, age, account, branch);
-					
-		// 			boolean managerexists = Stafflist.contains(manager);
-		// 			if (managerexists == true) {
-		// 				System.out.println("Manager exists.");
-		// 			} else {
-		// 				managers.add(manager);	
-		// 			}
-					
-		// 			break;
-		// 	    case 2: 
-		// 			System.out.println("Add the new staff's role, gender, name, age, account and branch ");
-		// 			Scanner scanner = new Scanner(System.in);
-		// 			super(role, gender, name, age, account, branch);
 
-		// 			boolean staffexists = Stafflist.contains(this.Staff);
-		// 			if (staffexists == true) {
-		// 				System.out.println("Staff exists.");
-		// 			} else {
-		// 				staffs.add(staff);
-						
-		// 			}
-		// 			break; 	}
-		// }while (choice < 3);
+/*
+    public void addStaff(){
+    	Branch branch;
+    	Staff newStaff;
+  
+    	int choice = sc.nextInt();
+		System.out.println("Choose 1 to add a manager and 2 to add a staff ");
+
+		if(choice==1){
+			// Manager(String name,RoleType role,GenderType gender,int age,Account acc,Branch branch)
+			String name;
+			Employee.
+
+			System.out.println("Add the new manager's role, gender, name, age, account and branch ");
+			Scanner scanner = new Scanner(System.in);
+			Manager manager = Manager(name,role, gender, name, age, account, branch);
+			
+			boolean managerexists = Stafflist.contains(manager);
+			if (managerexists == true) {
+				System.out.println("Manager exists.");
+			} else {
+				managers.add(manager);	
+			}
+			
+			break;
+
+		}
+		else if(choice==2){
+			System.out.println("Add the new staff's role, gender, name, age, account and branch ");
+			Scanner scanner = new Scanner(System.in);
+			super(role, gender, name, age, account, branch);
+
+			boolean staffexists = Stafflist.contains(this.Staff);
+			if (staffexists == true) {
+				System.out.println("Staff exists.");
+			} else {
+				staffs.add(staff);
+			}
+		}
+		else{
+
+		}
+
 	}
 	
 	
@@ -251,11 +279,12 @@ public class Admin extends Employee {
     		System.out.println("Branch does not exist. ");
     	}
 	}
-	*/
+	
 
     //================================================================//
+    //================================================================//
 
-
+*/
 
 }
   

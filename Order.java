@@ -1,7 +1,7 @@
 import java.util.*;
 
 class Order {
-    enum OrderStatus {NEW, PROCESSING, READY, COMPLETED}
+    enum OrderStatus{NEW, PROCESSING, READY, COMPLETED};
 
     private static int nextId = 1;
 
@@ -12,6 +12,8 @@ class Order {
     private ArrayList<Integer> quantities;
 
     //================================================================//
+    //================================================================//
+
 
     Order(){
 
@@ -49,8 +51,17 @@ class Order {
         System.out.println("Total Price: $" + calculatePrice());
     }
 
+    public void display(){
+        System.out.println("" + id + ": ");
+        for(int i=0; i<foods.size(); i++){
+            System.out.println(foods.get(i).getName() + " x" + quantities.get(i));
+        }
+    }
+
+    //================================================================//
     //================================================================//
 
+    
     public int getId() {return id;}
     public ArrayList<Food> getFood() {return foods;}
     public ArrayList<Integer> getQuantities() {return quantities;}

@@ -1,7 +1,7 @@
 import java.util.*;
 
 public class Branch{
-	
+
 	private Menu menu;
 	private String name;
 	private ArrayList<Staff> staffs;
@@ -10,6 +10,8 @@ public class Branch{
 	private int quota;
 
     //================================================================//
+    //================================================================//
+
 
 	public Branch(Menu menu, String name, ArrayList<Staff> staffs, ArrayList<Manager> managers, ArrayList<Order> orders) {
 		this.menu = menu;
@@ -87,6 +89,15 @@ public class Branch{
 		}
 	}
 
+	public void displayNewOrders(){
+		for(Order order : orders){
+			if(order.getStatus() == Order.OrderStatus.NEW) {
+				order.display();
+			}
+		}
+	}
+
+    //================================================================//
     //================================================================//
 
 

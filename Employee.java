@@ -11,6 +11,7 @@ public abstract class Employee implements Person{
 	public Account acc;
 
     //================================================================//
+    //================================================================//
 
 	Employee(String name,RoleType role,GenderType gender,int age,Account acc){
 		this.name = name;
@@ -20,6 +21,7 @@ public abstract class Employee implements Person{
 		this.acc = acc;
 	}
 
+    //================================================================//
     //================================================================//
 	
 	public String getName(){return name;}

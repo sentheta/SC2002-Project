@@ -1,27 +1,29 @@
 import java.util.*;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 public class Account{
 	private String username;
-	private int hash; // ?? change to SHA or something
+	private byte[] hash;
 
     //================================================================//
+    //================================================================//
 
-	Account(){
-		this("Admin");
-	}
 	Account(String username){
 		this.username = username;
 		hash = computeHash("password");
 	}
 
-	// compute polynomial hash of string
-	private int computeHash(String s){
-		long ret = 0, base = 2024, mul = 1, mod = 1000000007;
-		for(int i=0; i<s.length(); i++){
-			ret = (ret + s.charAt(i)*mul)%mod;
-			mul = mul*base%mod;
+	private byte[] computeHash(String s){
+		String salt = "SC2002_iS_fUn";
+		try{
+			MessageDigest md = MessageDigest.getInstance("SHA-256");
+			return md.digest((s+salt).getBytes(StandardCharsets.UTF_8));
 		}
-		return (int)ret;
+		catch(Exception e){
+			return new byte[0];
+		}
 	}
 
 	// verify username and password
@@ -29,12 +31,13 @@ public class Account{
 		if(username!=this.username) return false;
 		Scanner sc = new Scanner(System.in);
 		System.out.print("Enter password: ");
-		return hash	== computeHash(sc.next());
+		return hash == computeHash(sc.next());
 	}
 
 	// change account password
 	public void changePassword(){
 		Scanner sc = new Scanner(System.in);
+
 		if(!verify(username)){
 			System.out.print("Wrong password.");
 		}
@@ -45,6 +48,7 @@ public class Account{
 		}
 	}
 
+    //================================================================//
     //================================================================//
 
 	public String getUsername(){return username;}
