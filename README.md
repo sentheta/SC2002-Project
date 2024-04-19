@@ -14,9 +14,6 @@ Fix to do:
 
 Admin.java: ...
 
-Branch.java: make displayOrder() so Staff.java can use it
-Order.java: make display() so that Branch.java can use it
-
 Menu.java: addFood(), deleteFood(), updatePrice(), updateAvail() needs implementation. Take input from user
 
 
