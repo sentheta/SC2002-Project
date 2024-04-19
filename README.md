@@ -8,6 +8,8 @@ Consideration:
 
   Should we rename "Person" interface to "User" interface?
 
+  Should we add Branch Enum Status{OPEN, CLOSED}?
+
 Fix to do:
 
 Admin.java: chooseAction() is empty
