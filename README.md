@@ -10,6 +10,8 @@ Consideration:
 
   Should we add Branch Enum Status{OPEN, CLOSED}?
 
+  Should we abolish App.employees ?
+
 Fix to do:
 
 Add try{}catch(Exception e){} everywhere :/
