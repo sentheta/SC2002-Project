@@ -4,24 +4,19 @@ Consideration:
 
   JOYFUL: Java Object-oriented Yummy Food Ordering System
 
-  Should we make Employee an interface instead of class? NO LOL, need the constructor
-
-  Should we split App to App and DataLoader?
-
   Should we rename "Person" interface to "User" interface?
 
-  Should we add Branch Enum Status{OPEN, CLOSED}?
+  Should we make PayMethod an interface instead?
 
-  Should we abolish App.employees ?
 
 Fix to do:
 
+
 Add try{}catch(Exception e){} everywhere :/
+
+Always use sc.nextLine() for consistency
 
 Admin.java: ...
 
-Menu.java: addFood(), deleteFood(), updatePrice(), updateAvail() needs implementation. Take input from user
-
 After everything are done, we will modify private/public/protected/package accordingly
-
 
