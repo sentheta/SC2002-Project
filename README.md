@@ -2,6 +2,8 @@
 
 Consideration:
 
+  JOYFUL: Java Object-oriented Yummy Food Ordering System
+
   Should we make Employee an interface instead of class? NO LOL, need the constructor
 
   Should we split App to App and DataLoader?
