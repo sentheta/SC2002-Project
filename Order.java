@@ -16,7 +16,11 @@ class Order {
 
 
     Order(){
-
+        this.id = nextId++;
+        this.foods = new ArrayList<Food>();
+        this.quantities = new ArrayList<Integer>();
+        this.status = OrderStatus.NEW;
+        this.startTime = java.time.LocalDateTime.now().toString();
     }
     Order(ArrayList<Food> foods, ArrayList<Integer> quantities) {
         this.id = nextId++;
@@ -52,7 +56,7 @@ class Order {
     }
 
     public void display(){
-        System.out.println("" + id + ": ");
+        System.out.println("Order ID: " + id);
         for(int i=0; i<foods.size(); i++){
             System.out.println(foods.get(i).getName() + " x" + quantities.get(i));
         }

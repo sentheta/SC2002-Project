@@ -8,34 +8,99 @@ class Menu {
 
     public Menu(){
         foods = new ArrayList<Food>();
+        Logger.log("Creating new menu");
     }
 
     public void addFood(){
-        Food food = new Food();
-        // ?? ask user to input food
-        foods.add(food);
+        Scanner sc = new Scanner(System.in);
+        
+        String name, category;
+        Double price;
+        try{
+            System.out.println("Enter food name:");
+            System.out.print(">>> ");
+            name = sc.nextLine();
+
+            System.out.println("Enter food price:");
+            System.out.print(">>> ");
+            price = Double.parseDouble(sc.nextLine());
+
+            System.out.println("Enter food category:");
+            System.out.print(">>> ");
+            category = sc.nextLine();
+
+            // public Food(String name,boolean avail,double price, String category)
+            Food food = new Food(name, true, price, category);
+            foods.add(food);
+            System.out.println("Food added");
+        }
+        catch(Exception e){e.printStackTrace();}
+        
     }
         
     public void deleteFood(){
-        Food food = new Food();
-        // ?? ask user to input food
-        foods.remove(food);
+        Scanner sc = new Scanner(System.in);
+
+        try{
+            System.out.println("Enter food name:");
+            System.out.print(">>> ");
+            String name = sc.nextLine();
+
+            for(Food food : foods) if(food.getName().equals(name)){
+                foods.remove(food);
+                System.out.println("Food removed");
+                return;
+            }
+        }
+        catch(Exception e){e.printStackTrace();}
+
+        System.out.println("Food not found");
     }
+
     public void updatePrice(){
-        Food food = new Food();
-        // ?? ask user to input food then update
+        Scanner sc = new Scanner(System.in);
+
+        try{
+            System.out.println("Enter food name:");
+            System.out.print(">>> ");
+            String name = sc.nextLine();
+
+            for(Food food : foods) if(food.getName().equals(name)){
+                double newPrice = Double.parseDouble(sc.nextLine());
+                food.setPrice(newPrice);
+                System.out.println("Food price updated");
+                return;
+            }
+        }
+        catch(Exception e){e.printStackTrace();}
+        
+        System.out.println("Food not found");
     }
+
     public void updateAvail(){
-        Food food = new Food();
-        // ?? ask user to input food then update
+        Scanner sc = new Scanner(System.in);
+
+        try{
+            System.out.println("Enter food name:");
+            System.out.print(">>> ");
+            String name = sc.nextLine();
+
+            for(Food food : foods) if(food.getName().equals(name)){
+                food.setAvail(!food.getAvail());
+                System.out.println("Food availability updated");
+                return;
+            }
+        }
+        catch(Exception e){e.printStackTrace();}
+        
+        System.out.println("Food not found");
     }
 
     public void display() {
         System.out.println("Menu Items:");
-        for (Food food : foods) {
+        for(Food food : foods) if(food.getAvail()){
             System.out.println("Name: " + food.getName());
             System.out.println("Price: $" + food.getPrice());
-            System.out.println("Availability: " + (food.getAvail() ? "Available" : "Not Available"));
             System.out.println("Category: " + food.getCategory());
             System.out.println("---------------------");
         }
@@ -53,6 +118,7 @@ class Menu {
         System.out.println("Other value to end menu session");
 
         try{
+            System.out.print(">>> ");
             int choice = sc.nextInt();
             switch(choice){
             case 1: addFood(); return true;

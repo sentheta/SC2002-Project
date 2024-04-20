@@ -7,10 +7,7 @@ public class Manager extends Staff implements Person{
 
 	Manager(String name,RoleType role,GenderType gender,int age,Account acc,Branch branch){
 		super(name,role,gender,age,acc,branch);
-	}
-
-	public void displayStaff(){
-		branch.displayStaff();
+		Logger.log("Creating new manager");
 	}
 
 	public void modifyMenu(){
@@ -20,7 +17,7 @@ public class Manager extends Staff implements Person{
 	public boolean chooseAction(){
 		Scanner sc = new Scanner(System.in);
 
-		System.out.println("Choose manager action");
+		System.out.println("Choose manager action:");
 		System.out.println("1. Display new order");
 		System.out.println("2. View an order");
 		System.out.println("3. Display staff");
@@ -28,11 +25,12 @@ public class Manager extends Staff implements Person{
 		System.out.println("Other value to end manager session");
 
 		try{
-			int choice = sc.nextInt();
+        	System.out.print(">>> ");
+			int choice = Integer.parseInt(sc.nextLine());
 			switch(choice){
 			case 1: displayNewOrders(); return true;
 			case 2: viewOrder(); return true;
-			case 3: displayStaff(); return true;
+			case 3: branch.displayStaff(); return true;
 			case 4: modifyMenu(); return true;
 			}
 		}

@@ -6,7 +6,6 @@ public class Staff extends Employee{
     //================================================================//
     //================================================================//
 
-
 	Staff(String name,RoleType role,GenderType gender,int age,Account acc,Branch branch){
 		super(name,role,gender,age,acc);
 		this.branch = branch;
@@ -19,34 +18,33 @@ public class Staff extends Employee{
 
 	// View specific order
 	public void viewOrder(){
-		Scanner scanner = new Scanner(System.in);
+		Scanner sc = new Scanner(System.in);
 		
 		int order_id;
-		order_id = scanner.nextInt();
+        System.out.print(">>> ");
+		order_id = sc.nextInt();
 
 		int i, j, k=0;
-		for (i=0; i<branch.getOrders().size(); i++) {
-			if (branch.getOrders().get(i).getId() == order_id) {
-				for (j=0; j<branch.getOrders().get(i).getFood().size(); j++) {
-					System.out.println(branch.getOrders().get(i).getFood().get(j) + " x" + branch.getOrders().get(i).getQuantities().get(j));
-					return;
-				}
+		for(Order order : branch.getOrders()){
+			if(order.getId() == order_id){
+				order.display();
+				return;
 			}
 		}
-		System.out.println("This order does not exist.");
+		System.out.println("Order not found");
 	}
 
 	public boolean chooseAction() {
-		Scanner scanner = new Scanner(System.in);
+		Scanner sc = new Scanner(System.in);
 
 		System.out.println("Choose Staff action:");
 		System.out.println("1. Display new order");
 		System.out.println("2. View an order");
 		System.out.println("Other values to end staff session");
 
-		int choice;
 		try{
-			choice = scanner.nextInt();
+        	System.out.print(">>> ");
+			int choice = sc.nextInt();
 			switch(choice){
 			case 1: displayNewOrders(); return true;
 			case 2: viewOrder(); return true;

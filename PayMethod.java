@@ -16,15 +16,15 @@ public class PayMethod {
     }
 
     public static PayMethod choosePaymentMethod() {
-        Scanner scanner = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
 
         System.out.println("Choose a payment method:");
         System.out.println("1. Paywave");
         System.out.println("2. Credit Card");
         System.out.println("3. NETS");
 
-        System.out.print("Enter your choice: ");
-        int choice = scanner.nextInt();
+        System.out.print(">>> ");
+        int choice = sc.nextInt();
         PayMethod paymentMethod = null;
 
         switch (choice) {
@@ -41,7 +41,6 @@ public class PayMethod {
                 System.out.println("Invalid choice");
         }
 
-        scanner.close();
         return paymentMethod;
     }
 

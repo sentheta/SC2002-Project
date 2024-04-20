@@ -11,11 +11,15 @@ public class Account{
     //================================================================//
 
 	Account(String username){
+		Logger.log("Creating new account");
+
 		this.username = username;
 		hash = computeHash("password");
 	}
 
 	private byte[] computeHash(String s){
+		Logger.log("Computing hash");
+
 		String salt = "SC2002_iS_fUn";
 		try{
 			MessageDigest md = MessageDigest.getInstance("SHA-256");
@@ -28,24 +32,46 @@ public class Account{
 
 	// verify username and password
 	public Boolean verify(String username){
-		if(username!=this.username) return false;
 		Scanner sc = new Scanner(System.in);
-		System.out.print("Enter password: ");
-		return hash == computeHash(sc.next());
+		if(!username.equals(this.username)) return false;
+		Logger.log("Username verified");
+		Logger.log("Verifying password");
+		
+
+		try{
+			System.out.println("Enter your password: ");
+			System.out.print(">>> ");
+			String input = sc.nextLine();
+
+			if(Arrays.equals(hash, computeHash(input))){
+				System.out.println("Verification succeeded");
+				return true;
+			}
+		}
+		catch(Exception e){e.printStackTrace();}
+
+		System.out.println("Verification failed");
+		return false;
 	}
 
 	// change account password
 	public void changePassword(){
 		Scanner sc = new Scanner(System.in);
+		if(!verify(username)) return;
 
-		if(!verify(username)){
-			System.out.print("Wrong password.");
+		try{
+			System.out.println("Enter new password: ");
+			System.out.print(">>> ");
+			String input = sc.nextLine();
+			hash = computeHash(input);
 		}
-		else{
-			System.out.print("Enter new password: ");
-			hash = computeHash(sc.next());
-			System.out.print("Password updated.");
+		catch(Exception e){
+			System.out.println("Invalid input");
+			e.printStackTrace();
+			return;
 		}
+
+		System.out.println("Password updated.");
 	}
 
     //================================================================//

@@ -3,9 +3,6 @@ import java.util.stream.Collectors;
 
 
 public class Admin extends Employee{
-	public ArrayList<Employee> employees;
-	public ArrayList<Branch> branches;	
-	public ArrayList<PayMethod> payMethods;
 	
     //================================================================//
     //================================================================//
@@ -29,7 +26,7 @@ public class Admin extends Employee{
 		System.out.println("8. Open branch");
 		System.out.println("9. Close branch");
 
-		int choice = sc.nextInt();
+		int choice = Integer.parseInt(sc.nextLine());
 		switch(choice){
 		// case 1: addStaff(); return true;
 		// case 2: removeStaff(); return true;

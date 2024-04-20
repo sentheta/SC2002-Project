@@ -9,10 +9,9 @@ public class Food{
     //================================================================//
     //================================================================//
 
-    public Food(){
-
-    }
-    public Food(String name,boolean avail,double price, String category) {
+    public Food(String name,boolean avail,double price,String category) {
+        Logger.log("Creating new food");
+        
         this.name = name;
         this.avail = avail;
         this.price = price;
