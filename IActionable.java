@@ -1,3 +1,4 @@
+package FOODIE;
 interface IActionable{
 	// Print list of action and lets user choose ONE action
 	// Return TRUE if some action is done
