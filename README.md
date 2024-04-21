@@ -21,5 +21,7 @@ Always use sc.nextLine() for consistency
 
 Admin.java: ...
 
+Implement viewReadyToPick() at Customer.java
+
 After everything are done, we will modify private/public/protected/package accordingly
 
