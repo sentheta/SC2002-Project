@@ -1,3 +1,4 @@
+package FOODIE;
 interface IPayable{
     // Payment name
     public String name = "Payment";
