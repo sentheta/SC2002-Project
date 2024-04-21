@@ -1,3 +1,4 @@
+package FOODIE;
 import java.util.*;
 import java.io.Serializable;
 
@@ -134,6 +135,25 @@ class Customer implements IActionable, Serializable{
         //         order.display();
         //     }
         // }
+        if (orders.size() == 0) {
+    		System.out.println("No orders."); 
+    		return;
+    	}
+    	for (Order order : orders) {
+    		if (order.getStatus() == Order.OrderStatus.READY) {
+    			LocalDateTime time_now = LocalDateTime.now();
+    			LocalDateTime order_time = LocalDateTime.parse(order.getStartTime());
+    			Duration duration = Duration.between(order_time, time_now);
+    			if (duration.toMinutes() > 5) {
+    				System.out.println("Order " + order.getId() + " is now cancelled");
+    				order.setStatus(Order.OrderStatus.CANCELLED);
+    			}
+    			else {
+    				System.out.println("Order " + order.getId() + " is ready to pickup");
+    				order.display();
+    			}
+    		}
+    	}
     }
         
     public boolean chooseAction(){
