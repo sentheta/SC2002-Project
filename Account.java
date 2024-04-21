@@ -2,8 +2,9 @@ import java.util.*;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.io.Serializable;
 
-public class Account{
+class Account implements Serializable{
 	private String username;
 	private byte[] hash;
 

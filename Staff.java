@@ -1,6 +1,7 @@
 import java.util.*;
+import java.io.Serializable;
 
-public class Staff extends Employee{
+class Staff extends Employee implements IActionable, Serializable{
 	Branch branch;
 
     //================================================================//
@@ -11,35 +12,55 @@ public class Staff extends Employee{
 		this.branch = branch;
 	}
 
-	// Display all NEW order
 	public void displayNewOrders(){
-		branch.displayNewOrders();
+		for(Order order : branch.getOrders()){
+			if(order.getStatus() == Order.OrderStatus.NEW){
+				order.display();
+			}
+		}
 	}
 
-	// View specific order
 	public void viewOrder(){
 		Scanner sc = new Scanner(System.in);
 		
-		int order_id;
+		int id;
+		System.out.println("Enter order ID");
         System.out.print(">>> ");
-		order_id = sc.nextInt();
+		id = sc.nextInt();
 
-		int i, j, k=0;
-		for(Order order : branch.getOrders()){
-			if(order.getId() == order_id){
-				order.display();
-				return;
-			}
+		for(Order order : branch.getOrders()) if(order.getId() == id){
+			order.display();
+			return;
 		}
 		System.out.println("Order not found");
 	}
 
-	public boolean chooseAction() {
+	public void processOrder(){
 		Scanner sc = new Scanner(System.in);
 
-		System.out.println("Choose Staff action:");
+		// get info
+		int id;
+		System.out.println("Enter order ID");
+        System.out.print(">>> ");
+		id = sc.nextInt();
+
+		// update status
+		for(Order order : branch.getOrders()) if(order.getId() == id){
+			order.setStatus(Order.OrderStatus.READY);
+			System.out.println("Order status updated");
+			return;
+		}
+		System.out.println("Order not found");
+	}
+
+	public boolean chooseAction(){
+		Scanner sc = new Scanner(System.in);
+
+		System.out.println("--Choose Staff action--");
 		System.out.println("1. Display new order");
 		System.out.println("2. View an order");
+		System.out.println("3. Process an order");
+		System.out.println("4. Change password");
 		System.out.println("Other values to end staff session");
 
 		try{
@@ -48,6 +69,8 @@ public class Staff extends Employee{
 			switch(choice){
 			case 1: displayNewOrders(); return true;
 			case 2: viewOrder(); return true;
+			case 3: processOrder(); return true;
+			case 4: acc.changePassword(); return true;
 			}
 		}
 		catch(Exception e){}

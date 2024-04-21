@@ -1,6 +1,7 @@
 import java.util.*;
+import java.io.Serializable;
 
-public class Manager extends Staff implements Person{
+class Manager extends Staff implements IActionable, Serializable{
 
     //================================================================//
     //================================================================//
@@ -17,11 +18,13 @@ public class Manager extends Staff implements Person{
 	public boolean chooseAction(){
 		Scanner sc = new Scanner(System.in);
 
-		System.out.println("Choose manager action:");
+		System.out.println("--Choose manager action--");
 		System.out.println("1. Display new order");
 		System.out.println("2. View an order");
-		System.out.println("3. Display staff");
-		System.out.println("4. Modify menu");
+		System.out.println("3. Process an order");
+		System.out.println("4. Display staff");
+		System.out.println("5. Modify menu");
+		System.out.println("6. Change password");
 		System.out.println("Other value to end manager session");
 
 		try{
@@ -30,8 +33,10 @@ public class Manager extends Staff implements Person{
 			switch(choice){
 			case 1: displayNewOrders(); return true;
 			case 2: viewOrder(); return true;
-			case 3: branch.displayStaff(); return true;
-			case 4: modifyMenu(); return true;
+			case 3: processOrder(); return true;
+			case 4: branch.displayStaff(); return true;
+			case 5: modifyMenu(); return true;
+			case 6: getAcc().changePassword(); return true;
 			}
 		}
 		catch(Exception e){};

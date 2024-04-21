@@ -1,6 +1,8 @@
 import java.util.*;
+import java.io.Serializable;
 
-class Menu {
+class Menu implements IActionable, Serializable{
+    
     private ArrayList<Food> foods;
 
     //================================================================//
@@ -21,6 +23,10 @@ class Menu {
             System.out.print(">>> ");
             name = sc.nextLine();
 
+            for(Food food : foods) if(food.getName().equals(name)){
+                throw new Exception("Duplicate food entry");
+            }
+
             System.out.println("Enter food price:");
             System.out.print(">>> ");
             price = Double.parseDouble(sc.nextLine());
@@ -34,7 +40,7 @@ class Menu {
             foods.add(food);
             System.out.println("Food added");
         }
-        catch(Exception e){e.printStackTrace();}
+        catch(Exception e){System.out.print(e);}
         
     }
         
@@ -110,11 +116,12 @@ class Menu {
     public boolean chooseAction(){
         Scanner sc = new Scanner(System.in);
 
-        System.out.println("Choose menu action:");
+        System.out.println("--Choose menu action--");
         System.out.println("1. Add food");
         System.out.println("2. Delete food");
         System.out.println("3. Update price");
         System.out.println("4. Update availability");
+        System.out.println("5. Display menu items");
         System.out.println("Other value to end menu session");
 
         try{
@@ -125,11 +132,12 @@ class Menu {
             case 2: deleteFood(); return true;
             case 3: updatePrice(); return true;
             case 4: updateAvail(); return true;
+            case 5: display(); return true;
             }
         }
         catch(Exception e){}
 
-        System.out.println("Other value to end menu session");
+        System.out.println("Terminating menu session");
         return false;
     }
 

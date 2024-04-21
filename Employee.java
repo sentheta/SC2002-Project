@@ -1,6 +1,8 @@
 import java.util.*;
+import java.io.Serializable;
 
-public abstract class Employee implements Person{
+abstract class Employee implements IActionable, Serializable{
+	
 	public enum RoleType{STAFF, MANAGER, ADMIN};
 	public enum GenderType{MALE, FEMALE};
 
@@ -19,6 +21,10 @@ public abstract class Employee implements Person{
 		this.gender = gender;
 		this.age = age;
 		this.acc = acc;
+	}
+
+	public String getUsername(){
+		return acc.getUsername();
 	}
 
     //================================================================//

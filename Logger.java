@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class Logger{
+class Logger{
 	private static boolean active = false;
 	public static void activate(){
 		System.err.println(" [:] Verbose mode active");

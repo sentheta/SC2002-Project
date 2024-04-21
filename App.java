@@ -1,8 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-public class App{
-	public static Admin admin;
+class App implements Serializable{
 	public static ArrayList<Employee> employees;	// non-admin employees
 	public static ArrayList<Branch> branches;
 	public static ArrayList<PayMethod> payMethods;
@@ -20,55 +19,71 @@ public class App{
 		}
 		DataLoader.readFile(filename);
 
-		System.out.println("Choose user:");
-		System.out.println("1. Customer");
-		System.out.println("2. Employee");
-		System.out.println("Other value to end program");
+		while(true){
+			System.out.println("--Choose user--");
+			System.out.println("1. Customer");
+			System.out.println("2. Employee");
+			System.out.println("Other value to end program");
+
+			try{
+				System.out.print(">>> ");
+				int choice = Integer.parseInt(sc.nextLine()); 
+
+				switch(choice){
+				case 1: beCustomer(); break;
+				case 2: beEmployee(); break;
+				default: throw new Exception();
+				}
+			}
+			catch(Exception e){break;}
+		}
+
+		DataLoader.writeFile(filename);
+		System.out.println("Terminating program...");
+	}
+
+	public static void beCustomer(){
+		Scanner sc = new Scanner(System.in);
+
+		System.out.println("Choose branch");
+		for(int i=0; i<branches.size(); i++){
+			System.out.println((i+1) + ". " + branches.get(i).getName());
+		}
+		System.out.print(">>> ");
 
 		try{
-			System.out.print(">>> ");
-			int choice = Integer.parseInt(sc.nextLine()); 
+			int i = Integer.parseInt(sc.nextLine());
 
-			switch(choice){
-			case 1:{
-				System.out.println("Enter branch name:");
-				System.out.print(">>> ");
-				String branchName = sc.nextLine();
-	
-				boolean found = false;
-				for(Branch branch : branches) if(branch.getName().equals(branchName)){
-					Customer customer = new Customer(branch);
-					found = true;
-					while(customer.chooseAction());
+			Customer customer = new Customer(branches.get(i-1));
+			while(customer.chooseAction());
+			return;
+		}
+		catch(Exception e){};
+
+		System.out.println("Branch not found");
+
+	}
+
+	public static void beEmployee(){
+		Scanner sc = new Scanner(System.in);
+
+		System.out.println("Enter username:");
+		System.out.print(">>> ");
+
+		try{
+			String username = sc.nextLine();
+
+			boolean found = false;
+			for(Employee employee : employees) if(employee.getUsername().equals(username)){
+				found = true;
+				if(employee.getAcc().verify(username)){
+					while(employee.chooseAction());
 					break;
 				}
-
-				if(!found) System.out.println("Branch not found");
-				break;
 			}
-			case 2:{
-				System.out.println("Enter username:");
-				System.out.print(">>> ");
-				String username = sc.nextLine();
-	
-				boolean found = false;
-				for(Employee employee : employees) if(employee.getAcc().getUsername().equals(username)){
-					found = true;
-					if(employee.getAcc().verify(username)){
-						while(employee.chooseAction());
-						break;
-					}
-				}
-				if(!found) System.out.println("User not found");
-
-				break;
-			}
-			}
+			if(!found) System.out.println("User not found");
 		}
-		catch(Exception e){e.printStackTrace();}
-
-		// DataLoader.writeFile(filename);
-		System.out.println("Terminating program...");
+		catch(Exception e){};
 	}
 
 	//================================================================//
@@ -76,9 +91,9 @@ public class App{
 
 	// public static ArrayList<Employee> getEmployees(){return employees;}
 	// public static void setEmployees(ArrayList<Employee> tmp){employees = tmp;}
-	public static ArrayList<Branch> getBranches(){return branches;}
+	// public static ArrayList<Branch> getBranches(){return branches;}
 	// public static void setBranches(ArrayList<Branch> tmp){branches = tmp;}
-	public static ArrayList<PayMethod> getPayMethods(){return payMethods;}
+	// public static ArrayList<PayMethod> getPayMethods(){return payMethods;}
 	// public static void setPayMethods(ArrayList<PayMethod> tmp){payMethods = tmp;}
 
 }

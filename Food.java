@@ -1,6 +1,8 @@
 import java.util.*;
+import java.io.Serializable;
 
-public class Food{
+class Food implements Serializable{
+    
     private String name;
     private boolean avail; // availability
     private double price;

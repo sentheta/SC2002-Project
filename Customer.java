@@ -1,7 +1,8 @@
 import java.util.*;
+import java.io.Serializable;
 
-
-public class Customer implements Person{
+class Customer implements IActionable, Serializable{
+    
     private Branch branch; 
     private ArrayList<Order> orders;
     private Menu menu;
@@ -23,18 +24,17 @@ public class Customer implements Person{
 
         menu.display();
         Order order = new Order();
-        orders.add(order);
 
         // make while loop to force user enter a valid itemNumber and qty
         while(true){
             try{
                 System.out.println("Item number (or an invalid value to finish order): ");
-                System.out.println(">>> ");
+                System.out.print(">>> ");
                 int itemNumber = Integer.parseInt(sc.nextLine());
                 if(itemNumber<1 || itemNumber>=menu.getFoods().size()) break;
 
                 System.out.println("Quantity (or an invalid value to finish order): ");
-                System.out.println(">>> ");
+                System.out.print(">>> ");
                 int quantity = Integer.parseInt(sc.nextLine());
                 if(quantity<0) break;
 
@@ -45,6 +45,21 @@ public class Customer implements Person{
                 break;
             }
         }
+        if(order.getFoods().size() == 0){
+            System.out.println("Empty order. Aborted");
+        }
+
+        try{
+            String remarks;
+            System.out.println("Any additional remarks. Please declare TAKEAWAY if you want to do so");
+            System.out.print(">>> ");
+            remarks = sc.nextLine();
+            order.setRemarks(remarks);
+        }
+        catch(Exception e){}
+
+        orders.add(order);
+        System.out.println("Order " + order.getId() + " created");
     }
 
     public void checkOrder(){
@@ -70,10 +85,24 @@ public class Customer implements Person{
         System.out.print(">>> ");
         int orderId = Integer.parseInt(sc.nextLine());
 
+
         for (Order order : orders) if(order.getId()==orderId){
             double totalPrice = order.calculatePrice(); //calculatePrice() in order class
-            PayMethod.choosePaymentMethod();
-            PayMethod.pay(totalPrice);
+                
+            System.out.println("Enter order ID: ");
+            for(int i=0; i<App.payMethods.size(); i++){
+                System.out.println((i+1)+". "+App.payMethods.get(i).name);
+            }
+            System.out.print(">>> ");
+            
+            try{
+                int i = Integer.parseInt(sc.nextLine());
+                App.payMethods.get(i-1).pay(totalPrice);
+            }
+            catch(Exception e){
+                e.printStackTrace(); return;
+            }
+
             return;
         }
 
@@ -89,7 +118,7 @@ public class Customer implements Person{
 
         for(Order order : orders){
             if(order.getId()==orderId && order.getStatus()==Order.OrderStatus.READY){
-                order.setStatus(Order.OrderStatus.COMPLETED); //use same name in enum in order class
+                order.setStatus(Order.OrderStatus.COMPLETED);
                 System.out.println("Order ID " + orderId + " collected");
                 return;
             }
@@ -97,15 +126,26 @@ public class Customer implements Person{
 
         System.out.println("Order with ID " + orderId + " not found or not ready for pickup");
     }
+
+    void viewReadyToPick(){
+        // ??
+        // for(Order order : branch.order()){
+        //     if(order is READY and the time frame is still OK){
+        //         order.display();
+        //     }
+        // }
+    }
         
     public boolean chooseAction(){
         Scanner sc = new Scanner(System.in);
 
-        System.out.println("Choose customer action:");
+        System.out.println("--Choose customer action--");
         System.out.println("1. Make an order");
         System.out.println("2. Check an order");
         System.out.println("3. Make a payment");
         System.out.println("4. Collect an order");
+        System.out.println("5. Display menu items");
+        System.out.println("6. View ready to pick up orders");
         System.out.println("Other values to end customer session");
 
         try{
@@ -116,6 +156,8 @@ public class Customer implements Person{
             case 2: checkOrder(); return true;
             case 3: payOrder(); return true;
             case 4: collectOrder(); return true;
+            case 5: branch.getMenu().display(); return true;
+            case 6: viewReadyToPick(); return true;
             }
         }
         catch(Exception e){}
