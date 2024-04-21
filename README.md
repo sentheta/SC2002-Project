@@ -11,6 +11,7 @@ Consideration:
 
 Fix to do:
 
+  Remove RoleType parameter in constructor of Manager(), Employee() and Admin()
 
 Add try{}catch(Exception e){} everywhere :/
 
