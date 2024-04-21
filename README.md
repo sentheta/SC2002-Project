@@ -11,7 +11,9 @@ Consideration:
 
 Fix to do:
 
-  Remove RoleType parameter in constructor of Manager(), Employee() and Admin()
+Remove RoleType parameter in constructor of Manager(), Employee() and Admin()
+
+add description attribute and updateDescription() in Food.java
 
 Add try{}catch(Exception e){} everywhere :/
 
