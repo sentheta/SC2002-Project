@@ -43,27 +43,26 @@ class App implements Serializable{
 		System.out.println("Terminating program...");
 	}
 
-	public static void beCustomer(){
-		Scanner sc = new Scanner(System.in);
+	public static void beCustomer() {
+	    Scanner sc = new Scanner(System.in);
+	    branches branches = new branches(); 
 
-		System.out.println("Choose branch");
-		for(int i=0; i<branches.size(); i++){
-			System.out.println((i+1) + ". " + branches.get(i).getName());
-		}
-		System.out.print(">>> ");
+	    System.out.println("Choose branch");
+	    try {
+	        Branch chosenBranch = branches.chooseBranch();
 
-		try{
-			int i = Integer.parseInt(sc.nextLine());
-
-			Customer customer = new Customer(branches.get(i-1));
-			while(customer.chooseAction());
-			return;
-		}
-		catch(Exception e){};
-
-		System.out.println("Branch not found");
-
+	        if (chosenBranch != null) {
+	            Customer customer = new Customer(chosenBranch);
+	            while (customer.chooseAction()) {
+	            }
+	        } else {
+	            System.out.println("Branch not found");
+	        }
+	    } catch (Exception e) {
+	        System.out.println("Branch not found");
+	    }
 	}
+
 
 	public static void beEmployee(){
 		Scanner sc = new Scanner(System.in);
