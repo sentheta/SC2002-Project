@@ -47,7 +47,7 @@ class App implements Serializable{
 	    Scanner sc = new Scanner(System.in);
 	    branches branches = new branches(); 
 
-	    System.out.println("Choose branch");
+	    System.out.println("--Choose branch--");
 	    try {
 	        Branch chosenBranch = branches.chooseBranch();
 
