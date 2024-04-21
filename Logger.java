@@ -1,3 +1,4 @@
+package FOODIE;
 import java.util.*;
 
 class Logger{
