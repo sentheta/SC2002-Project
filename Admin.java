@@ -272,6 +272,7 @@ class Admin extends Employee implements IActionable, Serializable{
 
 		for(PayMethod pm : App.payMethods) if(pm.getName().equals(name)){
         	System.out.println("Payment method already exists");	
+			return;
 		}
 		App.payMethods.add(new PayMethod(name));
     }
