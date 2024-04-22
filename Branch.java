@@ -55,8 +55,8 @@ class Branch implements Serializable{
 		}
 		else{
 			for (i=0; i<staffs.size(); i++){
-				if (managers.get(i) == staff){
-					managers.remove(i);
+				if (staffs.get(i).getName().equals(staff.getName())){
+					staffs.remove(i);
 					System.out.println("Staff removed");
 				}
 			}
