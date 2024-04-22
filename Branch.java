@@ -47,7 +47,7 @@ class Branch implements Serializable{
 		int i;
 		if (staff instanceof Manager){
 			for (i=0; i<managers.size(); i++){
-				if (managers.get(i) == (Manager) staff){
+				if (managers.get(i).getName().equals(staff.getName())){
 					managers.remove(i);
 					System.out.println("Manager removed");
 				}
