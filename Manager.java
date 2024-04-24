@@ -19,6 +19,7 @@ class Manager extends Staff implements IActionable, Serializable{
 	public boolean chooseAction(){
 		Scanner sc = new Scanner(System.in);
 
+		System.out.println();
 		System.out.println("--Choose manager action--");
 		System.out.println("1. Display new order");
 		System.out.println("2. View an order");

@@ -1,5 +1,6 @@
 package FOODIE;
 import java.util.*;
+import java.time.*;
 import java.io.Serializable;
 
 class Customer implements IActionable, Serializable{
@@ -47,7 +48,7 @@ class Customer implements IActionable, Serializable{
             }
         }
         if(order.getFoods().size() == 0){
-            System.out.println("Empty order. Aborted");
+            System.out.println("Empty order. Aborted"); return;
         }
 
         try{
@@ -136,11 +137,11 @@ class Customer implements IActionable, Serializable{
         //     }
         // }
         if (orders.size() == 0) {
-    		System.out.println("No orders."); 
+    		System.out.println("No orders is ready."); 
     		return;
     	}
     	for (Order order : orders) {
-    		if (order.getStatus() == Order.OrderStatus.READY) {
+    		if(order.getStatus() == Order.OrderStatus.READY) {
     			LocalDateTime time_now = LocalDateTime.now();
     			LocalDateTime order_time = LocalDateTime.parse(order.getStartTime());
     			Duration duration = Duration.between(order_time, time_now);
@@ -159,6 +160,7 @@ class Customer implements IActionable, Serializable{
     public boolean chooseAction(){
         Scanner sc = new Scanner(System.in);
 
+        System.out.println();
         System.out.println("--Choose customer action--");
         System.out.println("1. Make an order");
         System.out.println("2. Check an order");

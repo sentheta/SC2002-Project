@@ -15,6 +15,7 @@ class Admin extends Employee implements IActionable, Serializable{
 	public boolean chooseAction(){
 		Scanner sc = new Scanner(System.in);
 
+		System.out.println();
 		System.out.println("--Choose admin action--");
 		System.out.println("1. Add staff");
 		System.out.println("2. Remove employee");

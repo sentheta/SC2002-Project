@@ -1,5 +1,6 @@
 package FOODIE;
 import java.util.*;
+import java.time.*;
 import java.io.Serializable;
 
 class Order implements Serializable{
@@ -24,7 +25,7 @@ class Order implements Serializable{
         this.foods = new ArrayList<Food>();
         this.quantities = new ArrayList<Integer>();
         this.status = OrderStatus.NEW;
-        this.startTime = java.time.LocalDateTime.now().toString();
+        this.startTime = LocalDateTime.now().toString();
         this.remarks = "";
     }
     Order(ArrayList<Food> foods, ArrayList<Integer> quantities, String remarks){
@@ -32,7 +33,7 @@ class Order implements Serializable{
         this.foods = foods;
         this.quantities = quantities;
         this.status = OrderStatus.NEW;
-        this.startTime = java.time.LocalDateTime.now().toString();
+        this.startTime = LocalDateTime.now().toString();
         this.remarks = remarks;
     }
 

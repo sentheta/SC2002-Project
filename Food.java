@@ -12,7 +12,7 @@ class Food implements Serializable{
     //================================================================//
     //================================================================//
 
-    public Food(String name,boolean avail,double price,String category) {
+    public Food(String name,double price,String category){
         Logger.log("Creating new food");
         
         this.name = name;

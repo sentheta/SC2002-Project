@@ -36,8 +36,8 @@ class Menu implements IActionable, Serializable{
             System.out.print(">>> ");
             category = sc.nextLine();
 
-            // public Food(String name,boolean avail,double price, String category)
-            Food food = new Food(name, true, price, category);
+            // public Food(String name,double price, String category)
+            Food food = new Food(name, price, category);
             foods.add(food);
             System.out.println("Food added");
         }
@@ -117,6 +117,7 @@ class Menu implements IActionable, Serializable{
     public boolean chooseAction(){
         Scanner sc = new Scanner(System.in);
 
+        System.out.println();
         System.out.println("--Choose menu action--");
         System.out.println("1. Add food");
         System.out.println("2. Delete food");

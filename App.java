@@ -21,6 +21,7 @@ class App implements Serializable{
 		DataLoader.readFile(filename);
 
 		while(true){
+			System.out.println();
 			System.out.println("--Choose user--");
 			System.out.println("1. Customer");
 			System.out.println("2. Employee");
@@ -46,7 +47,7 @@ class App implements Serializable{
 	public static void beCustomer(){
 		Scanner sc = new Scanner(System.in);
 
-		System.out.println("Choose branch");
+		System.out.println("Choose branch index");
 		for(int i=0; i<branches.size(); i++){
 			System.out.println((i+1) + ". " + branches.get(i).getName());
 		}

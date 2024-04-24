@@ -57,6 +57,7 @@ class Staff extends Employee implements IActionable, Serializable{
 	public boolean chooseAction(){
 		Scanner sc = new Scanner(System.in);
 
+		System.out.println();
 		System.out.println("--Choose Staff action--");
 		System.out.println("1. Display new order");
 		System.out.println("2. View an order");
