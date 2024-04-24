@@ -80,7 +80,7 @@ class Admin extends Employee implements IActionable, Serializable{
 
 	    	System.out.println("Enter new staff's username");
 	    	System.out.print(">>> ");
-	    	tmp = sc.nextLine().toLowerCase();
+	    	tmp = sc.nextLine();
 	    	acc = new Account(tmp);
 
 	    	System.out.println("Enter new staff's branch name");
@@ -136,29 +136,63 @@ class Admin extends Employee implements IActionable, Serializable{
 			if(staff.role == Employee.RoleType.MANAGER) staff.getBranch().getManagers().remove(staff);
 			else staff.getBranch().getStaffs().remove(staff);
 	    	System.out.println("Employee removed");
-			return;
     	}
 		System.out.println("Employee not found");
 	}
 
 
     public void displayEmployees(){
+		Scanner sc = new Scanner(System.in);
+
     	// ask filter
     	// if * is entered, then we should not filter by that category
-    	// boolean byBranchName, byRole, byGender, byAge;
-    	// String branchName;
-    	// Employee.RoleType role;
-    	// Employee.Gender gender;
-    	// int age;
+    	String branchName;
+    	String role;
+    	String gender;
+    	String age;
+    	try{
+	    	System.out.println("Enter branch name: (or *)");
+	    	System.out.print(">>> ");
+	    	branchName = sc.nextLine();
 
-		// int i = 1;
-		// for(Employee employee : App.employees)
-		// if(!byBranchName || (employee instanceof Staff && ((Staff)employee).getBranch().getName().equals(branchName)))
-		// if(!byRole || )
-		// {
-		// 	System.out.println(i + ". " + employee.getName());
-		// 	i++;
-		// }
+	    	System.out.println("Enter role: (or *)");
+	    	System.out.print(">>> ");
+	    	role = sc.nextLine();
+
+	    	System.out.println("Enter gender: (or *)");
+	    	System.out.print(">>> ");
+	    	gender = sc.nextLine();
+
+	    	System.out.println("Enter age: (or *)");
+	    	System.out.print(">>> ");
+	    	age = sc.nextLine();
+    	}
+    	catch(Exception e){
+	    	System.out.println("Aborted.");
+	    	return;
+    	}
+
+		int i = 1;
+		for(Employee employee : App.employees)
+		if(branchName.equals("*")
+			|| (employee instanceof Staff && ((Staff)employee).getBranch().getName().equals(branchName))
+		)
+		if(role.equals("*")
+			|| (employee.getRole().equals(Employee.RoleType.ADMIN) && role.toUpperCase().equals("ADMIN"))
+			|| (employee.getRole().equals(Employee.RoleType.MANAGER) && role.toUpperCase().equals("MANAGER"))
+			|| (employee.getRole().equals(Employee.RoleType.STAFF) && role.toUpperCase().equals("STAFF"))
+		)
+		if(gender.equals("*")
+			|| (employee.getGender().equals(Employee.GenderType.MALE) && gender.toUpperCase().equals("MALE"))
+			|| (employee.getGender().equals(Employee.GenderType.FEMALE) && gender.toUpperCase().equals("FEMALE"))
+		)
+		if(age.equals("*")
+			|| (employee.getAge() == Integer.parseInt(age))
+		)
+		{
+			System.out.println(i + ". " + employee.getName());
+			i++;
+		}
 	}
 
 
@@ -199,8 +233,6 @@ class Admin extends Employee implements IActionable, Serializable{
 	        Manager manager = new Manager(staff.getName(), Employee.RoleType.MANAGER, staff.getGender(), staff.getAge(), staff.getAcc(), staff.getBranch());
 	        branch.getManagers().add(manager);
 	        App.employees.add(manager);
-		System.out.println("Staff promoted.");
-		return;
     	}
     	System.out.println("Employee not found");
     }
@@ -249,15 +281,11 @@ class Admin extends Employee implements IActionable, Serializable{
     		staff.branch.getManagers().remove((Manager)staff);
 	        staff.branch = newBranch;        
 	        staff.branch.getManagers().add((Manager)staff);
-		System.out.println("Manager transferred.");
-		return;
     	}
     	else{
 	        staff.branch.getStaffs().remove(staff);
 	        staff.branch = newBranch;        
 	        staff.branch.getStaffs().add(staff);
-		System.out.println("Staff transferred.");
-		return;
     	}
 
     	System.out.println("Employee transferred successfully");
