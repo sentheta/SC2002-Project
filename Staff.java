@@ -14,10 +14,15 @@ class Staff extends Employee implements IActionable, Serializable{
 	}
 
 	public void displayNewOrders(){
+		boolean found = false;
 		for(Order order : branch.getOrders()){
 			if(order.getStatus() == Order.OrderStatus.NEW){
+				found = true;
 				order.display();
 			}
+		}
+		if(!found){
+			System.out.println("No new orders");
 		}
 	}
 

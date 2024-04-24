@@ -33,7 +33,7 @@ class Customer implements IActionable, Serializable{
                 System.out.println("Item number (or an invalid value to finish order): ");
                 System.out.print(">>> ");
                 int itemNumber = Integer.parseInt(sc.nextLine());
-                if(itemNumber<1 || itemNumber>=menu.getFoods().size()) break;
+                if(itemNumber<1 || itemNumber>menu.getFoods().size()) break;
 
                 System.out.println("Quantity (or an invalid value to finish order): ");
                 System.out.print(">>> ");

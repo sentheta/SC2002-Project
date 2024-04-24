@@ -48,7 +48,7 @@ class PayMobile extends PayMethod implements IPayable, Serializable{
         System.out.println("##########################################################");
         System.out.println("##########################################################");
         sc.nextLine();
-        System.out.println("Successfully paid $" + amount + "using PayMobile");
+        System.out.println("Successfully paid $" + amount + " using PayMobile");
     }
 
     //================================================================//

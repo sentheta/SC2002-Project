@@ -105,11 +105,14 @@ class Menu implements IActionable, Serializable{
 
     public void display() {
         System.out.println("Menu Items:");
+        int i = 1;
         for(Food food : foods) if(food.getAvail()){
+            System.out.println("Item " + i);
             System.out.println("Name: " + food.getName());
             System.out.println("Price: $" + food.getPrice());
             System.out.println("Category: " + food.getCategory());
             System.out.println("---------------------");
+            i++;
         }
     }
 

@@ -20,7 +20,7 @@ class PayNETS extends PayMethod implements IPayable, Serializable{
 
         System.out.println("Please tap your card");
         sc.nextLine();
-        System.out.println("Successfully paid $" + amount + "using NETS");
+        System.out.println("Successfully paid $" + amount + " using NETS");
     }
 
     //================================================================//

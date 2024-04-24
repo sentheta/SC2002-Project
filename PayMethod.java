@@ -26,7 +26,7 @@ class PayMethod implements IPayable, Serializable{
         catch(Exception e){
             e.printStackTrace(); return;
         }
-        System.out.println("Successfully paid $" + amount + "using " + name);
+        System.out.println("Successfully paid $" + amount + " using " + name);
     }
 
     //================================================================//

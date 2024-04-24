@@ -75,6 +75,7 @@ class Order implements Serializable{
     //================================================================//
     //================================================================//
 
+    public static void setNextId(int tmp){nextId = tmp;}
     public String getStartTime() {return startTime;}
     public int getId() {return id;}
     public ArrayList<Food> getFoods() {return foods;}

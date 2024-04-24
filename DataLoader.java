@@ -125,6 +125,15 @@ class DataLoader{
 			App.employees.addAll(branch.getManagers());
 		}
 
+		// calculate valid order ID
+		int mx = 0;
+		for(Branch branch : App.branches){
+			for(Order order : branch.getOrders()){
+				if(order.getId() > mx) mx = order.getId();
+			}
+		}
+		Order.setNextId(mx+1);
+
 	}
 
 	public static void writeFile(String filename){
