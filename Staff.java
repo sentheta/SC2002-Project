@@ -32,7 +32,7 @@ class Staff extends Employee implements IActionable, Serializable{
 		int id;
 		System.out.println("Enter order ID");
         System.out.print(">>> ");
-		id = sc.nextInt();
+		id = Integer.parseInt(sc.nextLine());
 
 		for(Order order : branch.getOrders()) if(order.getId() == id){
 			order.display();
@@ -48,7 +48,7 @@ class Staff extends Employee implements IActionable, Serializable{
 		int id;
 		System.out.println("Enter order ID");
         System.out.print(">>> ");
-		id = sc.nextInt();
+		id = Integer.parseInt(sc.nextLine());
 
 		// update status
 		for(Order order : branch.getOrders()) if(order.getId() == id){
@@ -72,7 +72,7 @@ class Staff extends Employee implements IActionable, Serializable{
 
 		try{
         	System.out.print(">>> ");
-			int choice = sc.nextInt();
+			int choice = Integer.parseInt(sc.nextLine());
 			switch(choice){
 			case 1: displayNewOrders(); return true;
 			case 2: viewOrder(); return true;
