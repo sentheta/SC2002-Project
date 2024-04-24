@@ -18,7 +18,7 @@ class Account implements Serializable{
 		this.username = username;
 		hash = computeHash("password");
 	}
-
+	
 	private byte[] computeHash(String s){
 		Logger.log("Computing hash");
 

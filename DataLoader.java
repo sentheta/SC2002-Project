@@ -113,6 +113,10 @@ class DataLoader{
 			branchJE.getMenu().getFoods().add(new Food(
 				"Pepsi", 2.1, "drink"
 			));
+
+			App.branches.add(branchNTU);
+			App.branches.add(branchJP);
+			App.branches.add(branchJE);
 		}
 
 		// Merge all employees

@@ -48,6 +48,7 @@ class App implements Serializable{
 		Scanner sc = new Scanner(System.in);
 
 		System.out.println("Choose branch index");
+		Logger.log("Branch size: " + branches.size());
 		for(int i=0; i<branches.size(); i++){
 			System.out.println((i+1) + ". " + branches.get(i).getName());
 		}
