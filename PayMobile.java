@@ -15,7 +15,7 @@ class PayMobile extends PayMethod implements Serializable{
     public void pay(double amount){
         Scanner sc = new Scanner(System.in);
         NumberFormat formatter = new DecimalFormat("#0.00");     
-        System.out.println(formatter.format(4.0));
+        System.out.println(formatter.format(amount));
 
         System.out.println("Please scan this QR code on your Mobile");
         System.out.println("##########################################################");
