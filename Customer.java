@@ -91,7 +91,7 @@ class Customer implements IActionable, Serializable{
         for (Order order : orders) if(order.getId()==orderId){
             double totalPrice = order.calculatePrice(); //calculatePrice() in order class
                 
-            System.out.println("Enter order ID: ");
+            System.out.println("Enter payment method: ");
             for(int i=0; i<App.payMethods.size(); i++){
                 System.out.println((i+1)+". "+App.payMethods.get(i).name);
             }
