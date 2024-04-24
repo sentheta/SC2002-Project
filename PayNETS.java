@@ -3,7 +3,7 @@ import java.util.*;
 import java.text.*;
 import java.io.Serializable;
 
-class PayNETS extends PayMethod implements IPayable, Serializable{
+class PayNETS extends PayMethod implements Serializable{
 
     //================================================================//
     //================================================================//
@@ -16,7 +16,7 @@ class PayNETS extends PayMethod implements IPayable, Serializable{
     public void pay(double amount){
         Scanner sc = new Scanner(System.in);
         NumberFormat formatter = new DecimalFormat("#0.00");     
-        System.out.println(formatter.format(amount));
+        System.out.println(formatter.format(4.0));
 
         System.out.println("Please tap your card");
         sc.nextLine();

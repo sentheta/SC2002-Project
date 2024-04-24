@@ -17,7 +17,7 @@ class PayMethod implements IPayable, Serializable{
 
     public void pay(double amount){
         NumberFormat formatter = new DecimalFormat("#0.00");     
-        System.out.println(formatter.format(amount));
+        System.out.println(formatter.format(4.0));
 
         System.out.println("Proccessing payment...");
         try{
