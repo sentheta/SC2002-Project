@@ -114,7 +114,7 @@ class Admin extends Employee implements IActionable, Serializable{
 		try{
 			System.out.println("Enter employee's username");
 	    	System.out.print(">>> ");
-	    	username = sc.nextLine().toLowerCase();
+	    	username = sc.nextLine();
 	    	for(char c : username.toCharArray()) if(c == ' '){
 	    		throw new Exception("Username should not have space");
 	    	}
@@ -136,6 +136,7 @@ class Admin extends Employee implements IActionable, Serializable{
 			if(staff.role == Employee.RoleType.MANAGER) staff.getBranch().getManagers().remove(staff);
 			else staff.getBranch().getStaffs().remove(staff);
 	    	System.out.println("Employee removed");
+			return;
     	}
 		System.out.println("Employee not found");
 	}
@@ -169,7 +170,7 @@ class Admin extends Employee implements IActionable, Serializable{
 		try{
 			System.out.println("Enter employee's username");
 	    	System.out.print(">>> ");
-	    	username = sc.nextLine().toLowerCase();
+	    	username = sc.nextLine();
 		}
 		catch(Exception e){
 			e.printStackTrace(); return;
@@ -198,6 +199,8 @@ class Admin extends Employee implements IActionable, Serializable{
 	        Manager manager = new Manager(staff.getName(), Employee.RoleType.MANAGER, staff.getGender(), staff.getAge(), staff.getAcc(), staff.getBranch());
 	        branch.getManagers().add(manager);
 	        App.employees.add(manager);
+		System.out.println("Staff promoted.");
+		return;
     	}
     	System.out.println("Employee not found");
     }
@@ -211,7 +214,7 @@ class Admin extends Employee implements IActionable, Serializable{
 		try{
 			System.out.println("Enter employee's username");
 	    	System.out.print(">>> ");
-	    	username = sc.nextLine().toLowerCase();
+	    	username = sc.nextLine();
     		
     		System.out.println("Enter target branch name");
 	    	System.out.print(">>> ");
@@ -246,11 +249,15 @@ class Admin extends Employee implements IActionable, Serializable{
     		staff.branch.getManagers().remove((Manager)staff);
 	        staff.branch = newBranch;        
 	        staff.branch.getManagers().add((Manager)staff);
+		System.out.println("Manager transferred.");
+		return;
     	}
     	else{
 	        staff.branch.getStaffs().remove(staff);
 	        staff.branch = newBranch;        
 	        staff.branch.getStaffs().add(staff);
+		System.out.println("Staff transferred.");
+		return;
     	}
 
     	System.out.println("Employee transferred successfully");
