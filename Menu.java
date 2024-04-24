@@ -131,7 +131,7 @@ class Menu implements IActionable, Serializable{
 
         try{
             System.out.print(">>> ");
-            int choice = sc.nextInt();
+            int choice = Integer.parseInt(sc.nextLine());
             switch(choice){
             case 1: addFood(); return true;
             case 2: deleteFood(); return true;
