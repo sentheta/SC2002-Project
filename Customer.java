@@ -72,6 +72,20 @@ class Customer implements IActionable, Serializable{
         int orderId = Integer.parseInt(sc.nextLine());
 
         for (Order order : orders) if(order.getId()==orderId){
+            if(order.getStatus() == Order.OrderStatus.READY){
+                LocalDateTime time_now = LocalDateTime.now();
+                LocalDateTime order_time = LocalDateTime.parse(order.getStartTime());
+                Duration duration = Duration.between(order_time, time_now);
+                if (duration.toMinutes() > 5) {
+                    // System.out.println("Order " + order.getId() + " is now cancelled");
+                    order.setStatus(Order.OrderStatus.CANCELLED);
+                }
+                else {
+                    // System.out.println("Order " + order.getId() + " is ready to pickup");
+                    order.display();
+                }
+            }
+            
             System.out.println("Order ID: " + orderId);
             System.out.println("Status: " + order.getStatus());
             return;
@@ -130,18 +144,12 @@ class Customer implements IActionable, Serializable{
     }
 
     void viewReadyToPick(){
-        // ??
-        // for(Order order : branch.order()){
-        //     if(order is READY and the time frame is still OK){
-        //         order.display();
-        //     }
-        // }
         if (orders.size() == 0) {
     		System.out.println("No orders is ready."); 
     		return;
     	}
     	for (Order order : orders) {
-    		if(order.getStatus() == Order.OrderStatus.READY) {
+    		if(order.getStatus() == Order.OrderStatus.READY){
     			LocalDateTime time_now = LocalDateTime.now();
     			LocalDateTime order_time = LocalDateTime.parse(order.getStartTime());
     			Duration duration = Duration.between(order_time, time_now);
