@@ -258,12 +258,16 @@ class Admin extends Employee implements IActionable, Serializable{
 
 		// Find employee and branch
     	Staff staff = null;
-    	for(Employee emp : App.employees) if(emp.getUsername().equals(username)){
-    		staff = (Staff)emp;
+    	for(Employee emp : App.employees) {
+		if(emp.getUsername().equals(username)){
+    			staff = (Staff)emp;
+		}
     	}
     	Branch newBranch = null;
-    	for(Branch b : App.branches) if(b.getName().equals(branchName)){
-    		newBranch = b; return;
+    	for(Branch b : App.branches) {
+		if(b.getName().equals(branchName)){
+    			newBranch = b;
+		}
     	}
     	if(username.equals("admin")){
     		System.out.println("Admin cannot be transferred"); return;
