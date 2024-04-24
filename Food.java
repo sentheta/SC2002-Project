@@ -16,7 +16,7 @@ class Food implements Serializable{
         Logger.log("Creating new food");
         
         this.name = name;
-        this.avail = avail;
+        this.avail = true;
         this.price = price;
         this.category = category;
     }
