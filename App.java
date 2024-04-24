@@ -29,7 +29,7 @@ class App implements Serializable{
 
 			try{
 				System.out.print(">>> ");
-				int choice = Integer.parseInt(sc.nextLine()); 
+				int choice = Integer.parseInt(sc.nextLine());
 
 				switch(choice){
 				case 1: beCustomer(); break;
