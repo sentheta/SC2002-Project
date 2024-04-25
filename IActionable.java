@@ -9,7 +9,7 @@ public interface IActionable{
 	/**
      * Prints a list of actions and allows the user to choose their actions.
      * 
-     * @return {@code true} if an action is performed, {@code false} to end the session.
+     * @return true if an action is performed, false to end the session.
      */
 	public boolean chooseAction();
 }
