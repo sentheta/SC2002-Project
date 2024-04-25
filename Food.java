@@ -74,14 +74,4 @@ public class Food implements Serializable{
      * @param tmp Category of food item.
      */
     public void setCategory(String tmp) {category = tmp;}
-    /**
-     * Sets remarks of food item
-     * @param tmp Remarks of food item.
-     */
-    public void setRemarks(String tmp) {remarks = tmp;}
-    /** 
-     * Gets remarks of food item
-     * @return String - remarks of food item.
-     */
-    public String getRemarks() {return remarks;}
 }
