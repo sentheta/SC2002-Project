@@ -1,9 +1,18 @@
-package FOODIE;
+package scse_FOODIE;
 import java.io.*;
 import java.util.*;
-
-class DataLoader{
-	
+/**
+ * Class for reading and writing from/to files
+ */
+public class DataLoader{
+	/**
+	 * Reads data from the specified file and populates the application's data structures.
+	 * If the file doesn't exist, default data is loaded.
+	 * 
+	 * @param filename The name of the file to read from.
+	 * @see FileInputStream
+	 * @see ObjectInputStream
+	 */
 	public static void readFile(String filename){		
 		File f = new File(filename);
 
@@ -135,7 +144,13 @@ class DataLoader{
 		Order.setNextId(mx+1);
 
 	}
-
+	/**
+	 * Writes data to the specified file, storing the application's data structures.
+	 * 
+	 * @param filename The name of the file to write to.
+	 * @see FileOutputStream
+	 * @see ObjectOutputStream
+	 */
 	public static void writeFile(String filename){
 		Logger.log("Writing to file");
 
