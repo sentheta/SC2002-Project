@@ -1,20 +1,32 @@
-package FOODIE;
+package scse_FOODIE;
 import java.util.*;
 import java.io.Serializable;
-
-class Admin extends Employee implements IActionable, Serializable{
+/**
+ * Represents an admin user which extends from the Employee class.
+ * Admins have more power than other derived classes of Employee class, being able to modifying employee details, payment methods and branch details
+ * 
+ */
+public class Admin extends Employee implements IActionable, Serializable{
 	
     //================================================================//
     //================================================================//
     
-
+	/**
+	* Default constructor for Admin class
+	* Creates new Admin object with name, role, gender, age and Account. 
+	*/
 	Admin(){
 		super("admin", Employee.RoleType.ADMIN, Employee.GenderType.MALE, 0, new Account("admin"));
 	}
-
+	/**
+	 * Allows admin to choose from a pre-determined number of options that are available to an admin.
+	 * The method first presents all available functionality, before allowing user to choose an option, 
+	 *  executing the method based on the user's input.
+	 *  @return true if method successfully executes, false if an invalid choice is input. 
+	 */
 	public boolean chooseAction(){
 		Scanner sc = new Scanner(System.in);
-
+		// Printing of available options to user.
 		System.out.println();
 		System.out.println("--Choose admin action--");
 		System.out.println("1. Add staff");
@@ -32,6 +44,7 @@ class Admin extends Employee implements IActionable, Serializable{
 
 	    try{
 			int choice = Integer.parseInt(sc.nextLine());
+		    	// depending on user choice, different methods will run.
 			switch(choice){
 			case 1: addStaff(); return true;
 			case 2: removeEmployee(); return true;
@@ -46,11 +59,16 @@ class Admin extends Employee implements IActionable, Serializable{
 			}
 	    }
 	    catch(Exception e){}
-
+	// return false if invalid input is entered.
         System.out.println("Terminating admin session...");
 		return false;
 	}
-
+/** 
+ * Adds new staff to database
+ * Method asks for new staff's name, role, gender, age, account username, and branch 
+ * Method then creates a new Staff object and adds it into main employees ArrayList in App class, and the ArrayList in 
+ * Branch class. 
+ */
     public void addStaff(){
 		Scanner sc = new Scanner(System.in);
 
@@ -105,7 +123,11 @@ class Admin extends Employee implements IActionable, Serializable{
     	branch.getStaffs().add(staff);
 	}
 
-	
+	/**
+	 * Removes Employee from database. 
+	 * Method asks for employee's username for verification first, before removing the Employee from App employees ArrayList.
+	 * and the Branch's ArrayList.
+	 */
     public void removeEmployee(){
 		Scanner sc = new Scanner(System.in);
 
@@ -131,7 +153,7 @@ class Admin extends Employee implements IActionable, Serializable{
 		for(int i=1; i<App.employees.size(); i++){
 			Staff staff = (Staff)App.employees.get(i);
 			if(!staff.getUsername().equals(username)) continue;
-
+			// Removing of staff from App and Branch employee ArrayList. 
 			App.employees.remove(staff);
 			if(staff.role == Employee.RoleType.MANAGER) staff.getBranch().getManagers().remove(staff);
 			else staff.getBranch().getStaffs().remove(staff);
@@ -140,7 +162,9 @@ class Admin extends Employee implements IActionable, Serializable{
 		System.out.println("Employee not found");
 	}
 
-
+	/**
+     * Allows Admin to filter Employees by certain categories such as Branch name, Role, Gender, Age. 
+     */
     public void displayEmployees(){
 		Scanner sc = new Scanner(System.in);
 
@@ -195,7 +219,13 @@ class Admin extends Employee implements IActionable, Serializable{
 		}
 	}
 
-
+/** 
+ * Promotes staff to a manager role. 
+ * This method prompts user for username of staff member to be promoted
+ * If valid employee is found (cannot be admin), check that the employee is not a manager already.
+ * The method then checks that the quota for managers of a branch is not exceeded before promoting staff.
+ * Method then removes staff from App employees ArrayList, creating a new Manager object then adding this new object back.
+ */
     public void promoteStaff(){
 		Scanner sc = new Scanner(System.in);
 
@@ -215,20 +245,21 @@ class Admin extends Employee implements IActionable, Serializable{
 
 		// Find employee
     	for(Employee employee : App.employees) if(employee.getUsername().equals(username)){
+		// Check if employee is manager
 	    	if(employee.getRole().equals(Employee.RoleType.MANAGER)){
 	    		System.out.println("Employee is already a manager"); return;
 	    	}
 	        
 	        Staff staff = (Staff)employee;
 	    	Branch branch = staff.getBranch();
-
+		// checking if branch manager quota is hit
 	        if(branch.getQuota() == branch.getManagers().size()) {
 	            System.out.println("Manager quota exceeded for the branch."); return;
 	        }
-
+		// remove staff from both branch and main dataset. 
 	        branch.getStaffs().remove(staff);
 	        App.employees.remove(staff);
-
+		// Creating new Manager object, adding it back to branch and main dataset. 
 			// Manager(String name,RoleType role,GenderType gender,int age,Account acc,Branch branch)
 	        Manager manager = new Manager(staff.getName(), Employee.RoleType.MANAGER, staff.getGender(), staff.getAge(), staff.getAcc(), staff.getBranch());
 	        branch.getManagers().add(manager);
@@ -237,7 +268,12 @@ class Admin extends Employee implements IActionable, Serializable{
     	System.out.println("Employee not found");
     }
 
-
+    /**
+ * Transfers an employee from one branch to another.
+ * Method asks for employee's username and their branch name to be transferred to. 
+ * Iterates through employees ArrayList in App class to find the employee.
+ * If employee is found, we remove the employee from their current branch and add them to their new target branch. 
+ */
     public void transferEmployee(){
 		Scanner sc = new Scanner(System.in);
 
@@ -279,14 +315,17 @@ class Admin extends Employee implements IActionable, Serializable{
 
     	// Transfer staff
     	if(staff.role.equals(Employee.RoleType.MANAGER)){
+		// Checking for quota of branch.
     		if(newBranch.getQuota() == newBranch.getManagers().size()){
             	System.out.println("Manager quota exceeded for the target branch"); return;
     		}
+		// Removing managers from current branch and adding to new branch.
     		staff.branch.getManagers().remove((Manager)staff);
 	        staff.branch = newBranch;        
 	        staff.branch.getManagers().add((Manager)staff);
     	}
     	else{
+		// Removing staff from current branch and adding to new branch. 
 	        staff.branch.getStaffs().remove(staff);
 	        staff.branch = newBranch;        
 	        staff.branch.getStaffs().add(staff);
@@ -295,7 +334,11 @@ class Admin extends Employee implements IActionable, Serializable{
     	System.out.println("Employee transferred successfully");
     }
  
-
+/**
+ * Method allows user to add a new payment method to the App payMeythods ArrayList. 
+ * Method asks for new payment method name, then iterates through App payMethods ArrayList to see if it exists.
+ * If it already exists, method will return. Else, it will add new PaymentMethod object
+ */
     public void addPayMethod(){
 		Scanner sc = new Scanner(System.in);
 
@@ -309,15 +352,20 @@ class Admin extends Employee implements IActionable, Serializable{
 		catch(Exception e){
 			e.printStackTrace(); return;
 		}
-
+		// Checking for existing payment method
 		for(PayMethod pm : App.payMethods) if(pm.getName().equals(name)){
         	System.out.println("Payment method already exists");	
 			return;
 		}
+	    // Add new payment method if not added. 
 		App.payMethods.add(new PayMethod(name));
     }
 
-
+/**
+    * Method allows admin to remove payment method from the App payMethods ArrayList. 
+    * Method asks for payment method name, then iterates through App payMethods ArrayList to see if it exists.
+    * If it exists, method will remove PaymentMethod object.
+    */
     public void removePayMethod(){
 		Scanner sc = new Scanner(System.in);
 
@@ -332,7 +380,7 @@ class Admin extends Employee implements IActionable, Serializable{
 			e.printStackTrace(); return;
 		}
 
-		// Remove
+		// Remove, checking for existing payment method.
 		for(PayMethod pm : App.payMethods) if(pm.getName().equals(name)){
 			App.payMethods.remove(pm);
     		System.out.println("Payment method removed");
@@ -341,7 +389,12 @@ class Admin extends Employee implements IActionable, Serializable{
     	System.out.println("Payment method not found");	
     }
 
-
+/** 
+ * Opens a new branch for the organization
+ * Method asks for new branch name, before creating a new Branch object with the name, default Menu object, staffs, managers and orders ArrayList.
+ * Method then adds this new Branch object to App branches ArrayList. 
+ * 
+ */
     public void openBranch(){
    		Scanner sc = new Scanner(System.in);
 
@@ -364,12 +417,17 @@ class Admin extends Employee implements IActionable, Serializable{
 		System.out.println("Branch opened");
     }
 
-
+    /** 
+     * Closes a branch for the organization
+     * Method asks for new branch name, before verifying that such a branch exists.
+     * Method then removes this Branch object from App branches ArrayList. 
+     */
     public void closeBranch(){
    		Scanner sc = new Scanner(System.in);
 
 		String name;
 		try{
+			// Getting branch name.
 			System.out.println("Enter new branch name");
 	    	System.out.print(">>> ");
 	    	name = sc.nextLine();
@@ -377,7 +435,7 @@ class Admin extends Employee implements IActionable, Serializable{
 		catch(Exception e){
 			e.printStackTrace(); return;
 		}
-
+		// Checking if branch exists
 		for(Branch branch : App.branches) if(branch.getName().equals(name)){
     		App.branches.remove(branch);
 			System.out.println("Branch closed");
