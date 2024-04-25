@@ -70,6 +70,7 @@ class Order implements Serializable{
         for(int i=0; i<foods.size(); i++){
             System.out.println(foods.get(i).getName() + " x" + quantities.get(i));
         }
+        System.out.println("Remarks: " + remarks);
     }
 
     //================================================================//
