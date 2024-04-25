@@ -2,7 +2,7 @@ package scse_FOODIE;
 /**
  * An interface representing objects that can perform certain actions.
  */
-interface IActionable{
+public interface IActionable{
 	// Print list of action and lets user choose ONE action
 	// Return TRUE if some action is done
 	// Return FALSE if to end session
