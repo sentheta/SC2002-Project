@@ -1,24 +1,42 @@
-package FOODIE;
+package scse_FOODIE;
 import java.util.*;
 import java.io.Serializable;
-
-class Manager extends Staff implements IActionable, Serializable{
+/**
+ * This class represents a Manager of the restaurant, extending from the Staff class since a manager can do what a 
+ * Staff can do but more (such as modifying menu)
+ * @see Staff
+ */
+public class Manager extends Staff implements IActionable, Serializable{
 
     //================================================================//
     //================================================================//
-
+	/**
+	 * Constructor for Manager object, with specified attributes
+	 * @param name Name of Manager
+	 * @param role Role of Manager
+	 * @param gender Gender of Manager
+	 * @param age Age of Manager
+	 * @param acc Account object of Manager
+	 * @param branch Branch object of Manager
+	 */
 	Manager(String name,RoleType role,GenderType gender,int age,Account acc,Branch branch){
 		super(name,role,gender,age,acc,branch);
 		Logger.log("Creating new manager");
 	}
-
+	/**
+	 * Allows manager to change the Menu of a Branch
+	 * @see Menu
+	 */
 	public void modifyMenu(){
 		while(branch.getMenu().chooseAction());
 	}
-	
+	/**
+	 * Allows users to choose from functions that a Manager can perform.
+	 * @return true if action executed, else false.
+	 */
 	public boolean chooseAction(){
 		Scanner sc = new Scanner(System.in);
-
+		// choosing of options available
 		System.out.println();
 		System.out.println("--Choose manager action--");
 		System.out.println("1. Display new order");
