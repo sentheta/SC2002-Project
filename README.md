@@ -2,7 +2,7 @@
 
 FOODIE is a project for the course Object Oriented Design and Programming (SC2002).
 
-# Contributors
+# Credits
 
 [Chua Wei Qian, Cleon](https://github.com/ChuaCleon)
 
