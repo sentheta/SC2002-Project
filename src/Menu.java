@@ -93,6 +93,8 @@ public class Menu implements IActionable, Serializable{
             String name = sc.nextLine();
             // Finding food item in menu.
             for(Food food : foods) if(food.getName().equals(name)){
+                System.out.println("Enter new price:");
+                System.out.print(">>> ");
                 double newPrice = Double.parseDouble(sc.nextLine());
                 // updating price of new food. 
                 food.setPrice(newPrice);
